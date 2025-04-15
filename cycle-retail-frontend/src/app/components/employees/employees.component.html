@@ -1,0 +1,12 @@
+<h1><img src="assets/staff.png" class="cycle">Registered Employees</h1>
+
+<div *ngIf="employees.length === 0">
+  No employees found.
+</div>
+
+<ul *ngIf="employees.length > 0">
+  <li *ngFor="let emp of employees">
+    👤 {{ emp.username }} (ID: {{ emp.id }}) - Role: {{ emp.role }}
+    <button class="delete" (click)="deleteEmployee(emp.id)">Delete</button>
+  </li>
+</ul>

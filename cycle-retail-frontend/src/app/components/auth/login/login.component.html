@@ -1,0 +1,39 @@
+<div class="login-container">
+    <div class="left-panel">
+      <h1>Welcome Back</h1>
+      <p>Sign in to access your dashboard.</p>
+    </div>
+  
+    <div class="right-panel">
+      <!-- <h1>Cycle Retail Shop</h1> -->
+      <div class="logo-container">
+        <img src="assets/image_new.png" class="top-image">
+        <p class="tagline"><strong>LET'S GO FURTHER</strong></p>
+      </div>
+
+      <h1>Login</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="input-group">
+          <input type="text" formControlName="username" placeholder="Username">
+        </div>
+  
+        <div class="input-group">
+          <input type="password" formControlName="password" placeholder="Password">
+        </div>
+  
+        <div class="role-selection">
+          <label>Select Role:</label>
+          <select formControlName="role">
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
+          </select>
+        </div>
+  
+        <button type="submit" class="login-btn">Sign In</button>
+        <!-- <p class="text-center">
+            Don't have an account? <a href="#">Register</a>
+        </p> -->
+      </form>
+    </div>
+  </div>
+  

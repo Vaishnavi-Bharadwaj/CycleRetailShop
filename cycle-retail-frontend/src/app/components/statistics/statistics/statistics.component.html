@@ -1,0 +1,12 @@
+<div *ngIf="monthlySalesCategories.length > 0" class="chart">
+    <kendo-chart [categoryAxis]="{ categories: monthlySalesCategories }">
+      <kendo-chart-title text="Monthly Sales"></kendo-chart-title>
+      <kendo-chart-series>
+        <kendo-chart-series-item *ngFor="let item of monthlySalesData; let i = index"
+                                 [data]="[item]"
+                                 [name]="monthlySalesCategories[i]"
+                                 type="column"></kendo-chart-series-item>
+      </kendo-chart-series>
+    </kendo-chart>
+  </div>
+  

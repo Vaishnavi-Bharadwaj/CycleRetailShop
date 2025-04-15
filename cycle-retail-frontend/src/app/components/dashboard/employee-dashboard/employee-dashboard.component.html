@@ -1,0 +1,38 @@
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <br>
+      <h3>Employee Dashboard</h3>
+      <ul>
+        <li><a routerLink="/orders"><img src="assets/logistics.png" class="cycle"> Orders</a></li>
+        <li><a routerLink="/cycle-list">🚲 Cycles</a></li>
+        <li><a routerLink="/customers"><img src="assets/users.png" class="cycle"> Customers</a></li>
+      </ul>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </aside>
+  
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <h1 class="employee-title">Welcome, Employee!</h1>
+      <p>Manage your store efficiently.</p>
+    
+      <div class="dashboard-grid">
+        <div class="dashboard-card" (click)="orders()">
+          <h3><img src="assets/logistics.png" class="cycle"> Orders</h3>
+          <p>Manage and track customer orders.</p>
+        </div>
+  
+        <div class="dashboard-card" (click)="cycles()">
+          <h3><img src="assets/image.png" class="cycle"> Cycles</h3>
+          <p>View and track cycle details.</p>
+        </div>
+        
+        <div class="dashboard-card" (click)="customers()">
+          <h3><img src="assets/users.png" class="cycle">  Customers</h3>
+          <p>Manage customer accounts.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+  

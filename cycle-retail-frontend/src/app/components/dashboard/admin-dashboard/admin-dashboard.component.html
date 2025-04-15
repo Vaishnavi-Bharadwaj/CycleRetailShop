@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <br>
+      <h3>Admin Dashboard</h3>
+      <ul>
+        <li><a routerLink="/orders"><img src="assets/logistics.png" class="cycle"> Orders</a></li>
+        <li><a routerLink="/cycle-list">🚲 Cycles</a></li>
+        <li><a routerLink="/employees"><img src="assets/staff.png" class="cycle"> Employees</a></li>
+        <li><a routerLink="/customers"><img src="assets/users.png" class="cycle"> Customers</a></li>
+        <li><a routerLink="/statistics" class="sidebar-link"><img src="assets/users.png" class="cycle"> Statistics</a></li>
+      </ul>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </aside>
+  
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <h1 class="admin-title">Welcome, Admin!</h1>
+      <p>Manage your store efficiently.</p>
+    
+      <div class="dashboard-grid">
+        <div class="dashboard-card" (click)="orders()">
+          <h3><img src="assets/logistics.png" class="cycle">  Orders</h3>
+          <p>Manage and track customer orders.</p>
+        </div>
+  
+        <div class="dashboard-card" (click)="cycles()">
+          <h3><img src="assets/image.png" class="cycle">     Cycles</h3>
+          <p>View, add, and update cycles.</p>
+        </div>
+
+        <div class="dashboard-card" (click)="employees()">
+          <h3><img src="assets/staff.png" class="cycle">    Employees</h3>
+          <p>Manage employee accounts.</p>
+        </div>
+
+        <div class="dashboard-card" (click)="customers()">
+          <h3><img src="assets/users.png" class="cycle">  Customers</h3>
+          <p>Manage customer accounts.</p>
+        </div>
+      </div>
+
+      <button class="register-btn" (click)="registerUser()">➕ Register User</button>
+    </main>
+  </div>
+  

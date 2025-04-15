@@ -1,0 +1,37 @@
+<div class="customer-wrapper">
+    <div class="form-container" *ngIf="role==='Admin'">
+      <h2><img src="assets/users.png" class="cycle"> Customer Management</h2>
+  
+      <div class="form-inline">
+        <input [(ngModel)]="customerId" type="number" placeholder="ID (for update)">
+        <input [(ngModel)]="customerName" type="text" placeholder="Name">
+        <input [(ngModel)]="customerEmail" type="email" placeholder="Email">
+        <input [(ngModel)]="customerPhone" type="tel" placeholder="Phone">
+        <button (click)="addCustomers()">Add</button>
+        <button (click)="updateDetails()">Update</button>
+      </div>
+    </div>
+  
+    <div class="table-container">
+      <h3>Customer List</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

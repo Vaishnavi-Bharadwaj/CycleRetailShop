@@ -1,0 +1,61 @@
+<div class="background-wrapper">
+<div class="order-container">
+    <h2><img src="assets/logistics.png" class="cycle"> Order Management</h2>
+    <br>
+    <!-- Place Order -->
+    <div class="order-form">
+      <input [(ngModel)]="cycleId" type="number" placeholder="Cycle ID">
+      <input [(ngModel)]="quantity" type="number" placeholder="Quantity">
+      <select [(ngModel)]="customerId">
+        <option [ngValue]="null" disabled>Select a Customer ID</option>
+        <option *ngFor="let customer of customers"
+                [value]="customer.id">
+          {{ customer.id }}
+        </option>
+      </select>
+      <button (click)="placeOrder()" >Place Order</button>
+    </div>
+  
+    <!-- Orders Table -->
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cycle ID</th>
+          <th>User ID</th>
+          <th>Customer ID</th>
+          <th>Quantity</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th *ngIf="role!=='Employee'">Update Status</th>
+          <th *ngIf="role!=='Employee'">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.cycleId }}</td>
+          <td>{{ order.userId }}</td>
+          <td>{{ order.customerId}}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.orderDate | date:'short' }}</td>
+          <td>{{ order.status }}</td>
+          <td *ngIf="role!=='Employee'">
+            <select [(ngModel)]="statusUpdate[order.id]">
+              <option *ngFor="let s of ['Pending', 'Approved', 'Shipped', 'Delivered']"
+                      [value]="s"
+                      [disabled]="statusPriority[s] < statusPriority[order.status]">
+                {{ s }}
+              </option>
+            </select>
+            <button class="button1" (click)="updateStatus(order.id)">Update</button>
+          </td>
+          <td *ngIf="role!=='Employee'">
+            <button class="button2" (click)="deleteOrder(order.id, order.cycleId, order.quantity)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 
+  
