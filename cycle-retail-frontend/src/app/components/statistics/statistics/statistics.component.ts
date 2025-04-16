@@ -1,57 +1,73 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service'; // Import the service
-
-interface MonthlySalesData {
-  Month: string;
-  TotalSales: number;
-}
+import { ChartConfiguration, ChartType } from 'chart.js';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })
-
 export class StatisticsComponent implements OnInit {
-  monthlySales: MonthlySalesData[] = [];
-  ordersByStatus = [];
-  topSellingCycles = [];
-  inventorySummary = [];
-  yearlyRevenue = [];
+  // Monthly Sales
+  monthlySalesLabels: string[] = [];
+  monthlySalesData: number[] = [];
+  monthlySalesChart: ChartConfiguration<'bar'>['data'] = {
+    labels: [],
+    datasets: [{ data: [], label: 'Monthly Sales' }]
+  };
 
-  // Prepare chart data
-  monthlySalesCategories: any[] = [];
-  monthlySalesData: any[] = [];
+  // Orders by Status
+  ordersByStatusChart: ChartConfiguration<'pie'>['data'] = {
+    labels: [],
+    datasets: [{ data: [] }]
+  };
 
-  constructor(private authService: AuthService) { }
+  // Top Selling Cycles
+  topSellingCyclesChart: ChartConfiguration<'bar'>['data'] = {
+    labels: [],
+    datasets: [{ data: [], label: 'Top Selling' }]
+  };
+
+  // Inventory Summary
+  inventorySummaryChart: ChartConfiguration<'bar'>['data'] = {
+    labels: [],
+    datasets: [{ data: [], label: 'Stock' }]
+  };
+
+  // Yearly Revenue
+  yearlyRevenueChart: ChartConfiguration<'line'>['data'] = {
+    labels: [],
+    datasets: [{ data: [], label: 'Revenue' }]
+  };
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.getMonthlySales().subscribe((data: MonthlySalesData[]) => {
-      this.monthlySales = data;
-      this.prepareMonthlySalesChartData();
+    this.authService.getMonthlySales().subscribe(data => {
+      this.monthlySalesLabels = data.map((item: any) => item.Month);
+      this.monthlySalesData = data.map((item: any) => item.TotalSales);
+      this.monthlySalesChart.labels = this.monthlySalesLabels;
+      this.monthlySalesChart.datasets[0].data = this.monthlySalesData;
     });
 
     this.authService.getOrdersByStatus().subscribe(data => {
-      this.ordersByStatus = data;
+      this.ordersByStatusChart.labels = data.map((x: any) => x.Status);
+      this.ordersByStatusChart.datasets[0].data = data.map((x: any) => x.Count);
     });
 
     this.authService.getTopSellingCycles().subscribe(data => {
-      this.topSellingCycles = data;
+      this.topSellingCyclesChart.labels = data.map((x: any) => x.CycleName);
+      this.topSellingCyclesChart.datasets[0].data = data.map((x: any) => x.QuantitySold);
     });
 
     this.authService.getInventorySummary().subscribe(data => {
-      this.inventorySummary = data;
+      this.inventorySummaryChart.labels = data.map((x: any) => x.ModelName);
+      this.inventorySummaryChart.datasets[0].data = data.map((x: any) => x.Stock);
     });
 
     this.authService.getYearlyRevenue().subscribe(data => {
-      this.yearlyRevenue = data;
+      this.yearlyRevenueChart.labels = data.map((x: any) => x.Year.toString());
+      this.yearlyRevenueChart.datasets[0].data = data.map((x: any) => x.Revenue);
     });
-  }
-
-  // Prepare data for the Monthly Sales chart
-  prepareMonthlySalesChartData(): void {
-    // Safely map the categories and data
-    this.monthlySalesCategories = this.monthlySales.map(item => item.Month);
-    this.monthlySalesData = this.monthlySales.map(item => item.TotalSales);
   }
 }

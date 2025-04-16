@@ -26,6 +26,7 @@
     "@progress/kendo-theme-default": "^10.5.0",
     "axios": "^1.8.4",
     "bootstrap": "5.3",
+    "chart.js": "^4.4.9",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

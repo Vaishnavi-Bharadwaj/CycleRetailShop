@@ -1,12 +1,47 @@
-<div *ngIf="monthlySalesCategories.length > 0" class="chart">
-    <kendo-chart [categoryAxis]="{ categories: monthlySalesCategories }">
-      <kendo-chart-title text="Monthly Sales"></kendo-chart-title>
-      <kendo-chart-series>
-        <kendo-chart-series-item *ngFor="let item of monthlySalesData; let i = index"
-                                 [data]="[item]"
-                                 [name]="monthlySalesCategories[i]"
-                                 type="column"></kendo-chart-series-item>
-      </kendo-chart-series>
-    </kendo-chart>
+<!-- <div class="container py-4"> -->
+  <h2>Admin Dashboard - Statistics</h2>
+
+  <div class="row">
+    <!-- Monthly Sales -->
+    <div class="col-md-6 chart-card">
+      <h4>📊 Monthly Sales</h4>
+      <canvas baseChart 
+        >
+      </canvas>
+    </div>
+
+    <!-- Orders by Status -->
+    <!-- <div class="col-md-6 chart-card">
+      <h4>📦 Orders by Status</h4>
+      <canvas baseChart 
+        >
+      </canvas>
+    </div> -->
+
+    <!-- Top Selling Cycles -->
+    <div class="col-md-6 chart-card">
+      <h4>🚴‍♀️ Top Selling Cycles</h4>
+      <!-- <canvas baseChart 
+        [data]="topSellingCyclesChart" 
+        [type]="'bar'"
+      >
+      </canvas> -->
+    </div>
+
+    <!-- Inventory Summary -->
+    <div class="col-md-6 chart-card">
+      <h4>📋 Inventory Summary</h4>
+      <canvas baseChart 
+        >
+      </canvas>
+    </div>
+
+    <!-- Yearly Revenue -->
+    <div class="col-12 chart-card">
+      <h4>💰 Yearly Revenue</h4>
+      <canvas baseChart 
+        >
+      </canvas>
+    </div>
   </div>
-  
+<!-- </div> -->

@@ -15,7 +15,7 @@ import { OrderListComponent } from './components/orders/order-list/order-list.co
 import { EmployeesComponent } from './components/employees/employees.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { StatisticsComponent } from './components/statistics/statistics/statistics.component';
-import { ChartsModule } from '@progress/kendo-angular-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,8 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
     OrderListComponent,
     EmployeesComponent,
     CustomersComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,6 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
