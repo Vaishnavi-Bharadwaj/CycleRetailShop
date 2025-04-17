@@ -5,7 +5,9 @@ import {
   ApexChart,
   ApexXAxis,
   ApexTitleSubtitle,
-  ApexPlotOptions
+  ApexPlotOptions,
+  ApexTooltip, 
+  ApexDataLabels
 } from 'ng-apexcharts';
 import { HttpClient } from '@angular/common/http';
 
@@ -25,7 +27,7 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMonthlySales();
-    this.loadOrdersByStatus();
+    //this.loadOrdersByStatus();
     this.loadTopSellingCycles();
     this.loadInventorySummary();
     this.loadYearlyRevenue();
@@ -36,15 +38,20 @@ export class StatisticsComponent implements OnInit {
     return {
       series: [],
       chart: { type: 'line', height: 350 },
-      xaxis: { categories: [] },  // Initialize categories as an empty array
+      xaxis: { categories: [] },
       title: { text: '' },
       labels: [],
+      colors: [],
+      dataLabels: { enabled: false }  // Ensure dataLabels is always defined
     };
   }
 
+  // Example color palette
+  vibrantColors: string[] = ['#00E396', '#FEB019', '#FF4560', '#775DD0', '#3F51B5', '#008FFB'];
+
+
   loadMonthlySales() {
-    this.http.get<any[]>('http://localhost:5000/api/charts/admin-dashboard/monthly-sales').subscribe(data => {
-      console.log('Monthly Sales Data:', data); // Log data to console
+    this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/monthly-sales').subscribe(data => {
       this.monthlySales = {
         series: [
           {
@@ -52,88 +59,90 @@ export class StatisticsComponent implements OnInit {
             data: data.map(item => item.totalSales)
           }
         ],
-        chart: { type: 'line', height: 350 },
-        xaxis: { categories: data.length ? data.map(item => item.month) : [] },
-        title: { text: 'Monthly Sales' }
+        chart: { type: 'line', height: 350, foreColor: '#ffffff' },
+        xaxis: { categories: data.map(item => item.month) },
+        title: { text: 'Monthly Sales' },
+        labels: [],                             
+        colors: ['#00e396']
+      };
+    });
+  }
+  
+  
+
+  loadTopSellingCycles() {
+    this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/top-selling-cycles').subscribe(data => {
+      this.topSellingCycles = {
+        series: data.map(item => item.quantitySold),
+        chart: { type: 'pie', height: 350, foreColor: '#ffffff' },
+        labels: data.map(item => item.cycleName),   
+        title: { text: 'Top Selling Cycles' },
+        xaxis: { categories: [] },
+        colors: this.vibrantColors
+      };
+    });
+  }
+  
+  loadInventorySummary() {
+    this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/inventory-summary').subscribe(data => {
+      this.inventorySummary = {
+        series: [
+          {
+            name: 'Stock',
+            data: data.map(item => item.stock)
+          }
+        ],
+        chart: {
+          type: 'bar',
+          height: 350,
+          foreColor: '#FFFFFF'
+        },
+        xaxis: {
+          categories: data.map(item => item.modelName)
+        },
+        title: {
+          text: 'Inventory Summary'
+        },
+        labels: [],
+        colors: ['#FF4560'],
+        tooltip: {
+          theme: 'dark' 
+        },
+        dataLabels: { enabled: false },
       };
     });
   }
   
 
-  loadOrdersByStatus() {
-    this.http.get<any[]>('http://localhost:5000/api/charts/admin-dashboard/orders-by-status').subscribe(data => {
-      if (data && data.length) {
-        this.ordersByStatus = {
-          series: data.map(item => item.count),
-          chart: { type: 'pie', height: 350 },
-          labels: data.map(item => item.status),
-          title: { text: 'Orders by Status' },
-          xaxis: { categories: [] }  // Empty xaxis for pie chart
-        };
-      }
-    });
-  }
-
-  loadTopSellingCycles() {
-    this.http.get<any[]>('http://localhost:5000/api/charts/admin-dashboard/top-selling-cycles').subscribe(data => {
-      if (data && data.length) {
-        this.topSellingCycles = {
-          series: [
-            {
-              name: 'Quantity Sold',
-              data: data.map(item => item.quantitySold)
-            }
-          ],
-          chart: { type: 'bar', height: 350 },
-          xaxis: { categories: data.map(item => item.cycleName) },
-          title: { text: 'Top Selling Cycles' }
-        };
-      }
-    });
-  }
-
-  loadInventorySummary() {
-    this.http.get<any[]>('http://localhost:5000/api/charts/admin-dashboard/inventory-summary').subscribe(data => {
-      if (data && data.length) {
-        this.inventorySummary = {
-          series: [
-            {
-              name: 'Stock',
-              data: data.map(item => item.stock)
-            }
-          ],
-          chart: { type: 'bar', height: 350 },
-          xaxis: { categories: data.map(item => item.modelName) },
-          title: { text: 'Inventory Summary' }
-        };
-      }
-    });
-  }
-
   loadYearlyRevenue() {
-    this.http.get<any[]>('http://localhost:5000/api/charts/admin-dashboard/yearly-revenue').subscribe(data => {
-      if (data && data.length) {
-        this.yearlyRevenue = {
-          series: [
-            {
-              name: 'Revenue',
-              data: data.map(item => item.revenue)
-            }
-          ],
-          chart: { type: 'area', height: 350 },
-          xaxis: { categories: data.map(item => item.year) },
-          title: { text: 'Yearly Revenue' }
-        };
-      }
+    this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/yearly-revenue').subscribe(data => {
+      this.yearlyRevenue = {
+        series: [
+          {
+            name: 'Revenue',
+            data: data.map(item => item.revenue)
+          }
+        ],
+        chart: { type: 'area', height: 350, foreColor: '#FFFFFF' },
+        xaxis: { categories: data.map(item => item.year) },
+        title: { text: 'Yearly Revenue' },
+        labels: [],                           
+        colors: ['#775DD0']
+      };
+      
     });
   }
+
 }
 
 export type ChartOptions = {
   series: ApexAxisChartSeries | ApexNonAxisChartSeries;
   chart: ApexChart;
-  xaxis: ApexXAxis;  // xaxis is required, no longer optional
+  xaxis: ApexXAxis;
   title: ApexTitleSubtitle;
-  labels?: string[];
+  labels: string[];
   plotOptions?: ApexPlotOptions;
+  colors: string[]; 
+  tooltip?: ApexTooltip;
+  dataLabels?: ApexDataLabels;
 };

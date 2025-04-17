@@ -1,21 +1,50 @@
 .dashboard-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
+  padding: 20px;
+  background-color: #1e1e2f;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-size: 35px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #768dbd;
+  margin-bottom: 20px;
+}
+
+.cycle {
+  width: 35px;
+  margin-right: 10px;
+  margin-top: -10px;
 }
 
 .chart-card {
-  background: #f9f9f9;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #2a2a40;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.chart-card:hover {
+  transform: scale(1.01);
 }
 
 .full-width {
   grid-column: span 2;
 }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Force exactly 2 columns */
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr; /* Stack charts on smaller screens */
+  }
+}
+
+

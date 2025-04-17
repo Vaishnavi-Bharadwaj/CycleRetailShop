@@ -1,41 +1,52 @@
 <div class="dashboard-container">
+  <h2 class="dashboard-title"><img src="assets/analysis.png" class="cycle"> Admin Dashboard Statistics</h2>
 
-  <div class="chart-card" *ngIf="monthlySales && monthlySales.series.length">
-    <apx-chart
-      [series]="monthlySales.series"
-      [chart]="monthlySales.chart"
-      [xaxis]="monthlySales.xaxis"
-      [title]="monthlySales.title">
-    </apx-chart>
-  </div>
+  <div class="charts-grid">
+    <div class="chart-card" *ngIf="monthlySales && monthlySales.series.length">
+      <apx-chart
+        [series]="monthlySales.series"
+        [chart]="monthlySales.chart"
+        [xaxis]="monthlySales.xaxis"
+        [title]="monthlySales.title"
+        [colors]="monthlySales.colors"
+        [labels]="monthlySales.labels"
+        [tooltip]="{ theme: 'dark' }">
 
-  <div class="chart-card" *ngIf="topSellingCycles && topSellingCycles.series.length">
-    <apx-chart
-      [series]="topSellingCycles.series"
-      [chart]="topSellingCycles.chart"
-      [xaxis]="topSellingCycles.xaxis"
-      [title]="topSellingCycles.title">
-    </apx-chart>
-  </div>
-  
+      </apx-chart>
+    </div>
 
+    <div class="chart-card" *ngIf="topSellingCycles && topSellingCycles.series.length">
+      <apx-chart
+        [series]="topSellingCycles.series"
+        [chart]="topSellingCycles.chart"
+        [labels]="topSellingCycles.labels"
+        [title]="topSellingCycles.title"
+        [colors]="topSellingCycles.colors">
+      </apx-chart>
+    </div>
 
-  <div class="chart-card" *ngIf="inventorySummary && inventorySummary.series.length">
-    <apx-chart
-      [series]="inventorySummary.series"
-      [chart]="inventorySummary.chart"
-      [xaxis]="inventorySummary.xaxis"
-      [title]="inventorySummary.title">
-    </apx-chart>
-  </div>
+    <div class="chart-card" *ngIf="inventorySummary && inventorySummary.series.length">
+      <apx-chart
+        [series]="inventorySummary.series"
+        [chart]="inventorySummary.chart"
+        [xaxis]="inventorySummary.xaxis"
+        [title]="inventorySummary.title"
+        [colors]="inventorySummary.colors"
+        [labels]="inventorySummary.labels"
+        [tooltip]="{ theme: 'dark' }"
+        [dataLabels]="inventorySummary.dataLabels || { enabled: false }">
+      </apx-chart>
+    </div>
 
-  <div class="chart-card full-width" *ngIf="yearlyRevenue && yearlyRevenue.series.length">
-    <apx-chart
-      [series]="yearlyRevenue.series"
-      [chart]="yearlyRevenue.chart"
-      [xaxis]="yearlyRevenue.xaxis"
-      [title]="yearlyRevenue.title">
-    </apx-chart>
+    <div class="chart-card" *ngIf="yearlyRevenue && yearlyRevenue.series.length">
+      <apx-chart
+        [series]="yearlyRevenue.series"
+        [chart]="yearlyRevenue.chart"
+        [xaxis]="yearlyRevenue.xaxis"
+        [title]="yearlyRevenue.title"
+        [colors]="yearlyRevenue.colors"
+        [labels]="yearlyRevenue.labels">
+      </apx-chart>
+    </div>
   </div>
 </div>
-

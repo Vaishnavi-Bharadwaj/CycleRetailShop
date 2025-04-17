@@ -37,18 +37,20 @@ namespace CycleRetailShop.API.Controllers
 
         //Employees can place orders
         [HttpPost("create/{cycleId}/{quantity}/{customerId}")]
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Admin,Employee")]
         public IActionResult CreateOrder(int cycleId, int quantity, int customerId)
         {
-            var username = User.Identity.Name;
+            var username = User.Identity?.Name;
             
             if (string.IsNullOrEmpty(username))
                 return Unauthorized("Username claim missing in token.");
 
             var employee = _context.Users.FirstOrDefault(u => u.Username == username && u.Role == "Employee");
+            var admin = _context.Users.FirstOrDefault(u => u.Username == username && u.Role == "Admin");
+
  
-            if (employee == null)
-                return BadRequest("Invalid employee.");
+            if (employee == null && admin == null)
+                return BadRequest("Invalid user.");
  
             var cycle = _context.Cycles.FirstOrDefault(c => c.Id == cycleId);
             if (cycle == null)
@@ -58,7 +60,7 @@ namespace CycleRetailShop.API.Controllers
                 return BadRequest("Not enough stock available.");
             var order = new Order
             {
-                UserId = employee.Id,
+                UserId = employee != null ? employee.Id : admin.Id,
                 CycleId = cycleId,
                 Quantity = quantity,
                 CustomerId = customerId,

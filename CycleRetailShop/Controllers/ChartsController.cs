@@ -21,7 +21,7 @@ namespace CycleRetailShop.API.Controllers
         public IActionResult GetMonthlySales()
         {
             var salesData = _context.Orders
-                .Where(o => o.Status == "Completed")
+                .Where(o => o.OrderDate != null )
                 .Include(o => o.Cycle)
                 .AsEnumerable()
                 .GroupBy(o => new { o.OrderDate.Year, o.OrderDate.Month })
@@ -36,21 +36,21 @@ namespace CycleRetailShop.API.Controllers
             return Ok(salesData);
         }
 
-        //Orders by Status
-        [HttpGet("admin-dashboard/orders-by-status")]
-        public IActionResult GetOrdersByStatus()
-        {
-            var statusData = _context.Orders
-                .GroupBy(o => o.Status)
-                .Select(g => new
-                {
-                    Status = g.Key,
-                    Count = g.Count()
-                })
-                .ToList();
+        // //Orders by Status
+        // [HttpGet("admin-dashboard/orders-by-status")]
+        // public IActionResult GetOrdersByStatus()
+        // {
+        //     var statusData = _context.Orders
+        //         .GroupBy(o => o.Status)
+        //         .Select(g => new
+        //         {
+        //             Status = g.Key,
+        //             Count = g.Count()
+        //         })
+        //         .ToList();
 
-            return Ok(statusData);
-        }
+        //     return Ok(statusData);
+        // }
 
         //Top Selling Cycles
         [HttpGet("admin-dashboard/top-selling-cycles")]
