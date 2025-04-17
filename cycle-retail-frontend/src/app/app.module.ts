@@ -15,7 +15,7 @@ import { OrderListComponent } from './components/orders/order-list/order-list.co
 import { EmployeesComponent } from './components/employees/employees.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { StatisticsComponent } from './components/statistics/statistics/statistics.component';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +38,7 @@ import { StatisticsComponent } from './components/statistics/statistics/statisti
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

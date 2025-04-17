@@ -1,47 +1,41 @@
-<!-- <div class="container py-4"> -->
-  <h2>Admin Dashboard - Statistics</h2>
+<div class="dashboard-container">
 
-  <div class="row">
-    <!-- Monthly Sales -->
-    <div class="col-md-6 chart-card">
-      <h4>📊 Monthly Sales</h4>
-      <canvas baseChart 
-        >
-      </canvas>
-    </div>
-
-    <!-- Orders by Status -->
-    <!-- <div class="col-md-6 chart-card">
-      <h4>📦 Orders by Status</h4>
-      <canvas baseChart 
-        >
-      </canvas>
-    </div> -->
-
-    <!-- Top Selling Cycles -->
-    <div class="col-md-6 chart-card">
-      <h4>🚴‍♀️ Top Selling Cycles</h4>
-      <!-- <canvas baseChart 
-        [data]="topSellingCyclesChart" 
-        [type]="'bar'"
-      >
-      </canvas> -->
-    </div>
-
-    <!-- Inventory Summary -->
-    <div class="col-md-6 chart-card">
-      <h4>📋 Inventory Summary</h4>
-      <canvas baseChart 
-        >
-      </canvas>
-    </div>
-
-    <!-- Yearly Revenue -->
-    <div class="col-12 chart-card">
-      <h4>💰 Yearly Revenue</h4>
-      <canvas baseChart 
-        >
-      </canvas>
-    </div>
+  <div class="chart-card" *ngIf="monthlySales && monthlySales.series.length">
+    <apx-chart
+      [series]="monthlySales.series"
+      [chart]="monthlySales.chart"
+      [xaxis]="monthlySales.xaxis"
+      [title]="monthlySales.title">
+    </apx-chart>
   </div>
-<!-- </div> -->
+
+  <div class="chart-card" *ngIf="topSellingCycles && topSellingCycles.series.length">
+    <apx-chart
+      [series]="topSellingCycles.series"
+      [chart]="topSellingCycles.chart"
+      [xaxis]="topSellingCycles.xaxis"
+      [title]="topSellingCycles.title">
+    </apx-chart>
+  </div>
+  
+
+
+  <div class="chart-card" *ngIf="inventorySummary && inventorySummary.series.length">
+    <apx-chart
+      [series]="inventorySummary.series"
+      [chart]="inventorySummary.chart"
+      [xaxis]="inventorySummary.xaxis"
+      [title]="inventorySummary.title">
+    </apx-chart>
+  </div>
+
+  <div class="chart-card full-width" *ngIf="yearlyRevenue && yearlyRevenue.series.length">
+    <apx-chart
+      [series]="yearlyRevenue.series"
+      [chart]="yearlyRevenue.chart"
+      [xaxis]="yearlyRevenue.xaxis"
+      [title]="yearlyRevenue.title">
+    </apx-chart>
+  </div>
+</div>
+

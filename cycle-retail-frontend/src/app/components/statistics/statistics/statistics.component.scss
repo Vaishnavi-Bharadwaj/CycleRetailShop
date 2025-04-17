@@ -1,83 +1,21 @@
-/* General Container and Layout */
-// .container {
-//     margin-top: 20px;
-//   }
-  
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-  }
-  
-  /* Chart Card Styling */
-  .chart-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .chart-card h4 {
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Specific chart size */
-  canvas {
-    max-height: 400px;
-    height: auto;
-    width: 100%;
-  }
-  
-  /* Flexbox Layout for Responsive Columns */
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .col-md-6 {
-    flex: 1;
-    min-width: 280px;
-    max-width: 48%;
-  }
-  
-  .col-12 {
-    width: 100%;
-  }
-  
-  /* Card Hover Effect */
-  .chart-card:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-5px);
-    transition: all 0.3s ease;
-  }
-  
-  /* Add Icons and Style the Titles */
-  .chart-card h4 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-  }
-  
-  .chart-card h4 span {
-    font-size: 1.5rem;
-  }
-  
-  @media (max-width: 768px) {
-    .col-md-6 {
-      max-width: 100%;
-      flex: 1 1 100%;
-    }
-  }
-  
-  /* Additional Styles for Visual Appeal */
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fa;
-    color: #333;
-  }
-  
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.chart-card {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-width {
+  grid-column: span 2;
+}
