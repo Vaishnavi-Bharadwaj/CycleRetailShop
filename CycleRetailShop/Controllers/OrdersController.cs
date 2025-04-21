@@ -53,11 +53,15 @@ namespace CycleRetailShop.API.Controllers
                 return BadRequest("Invalid user.");
  
             var cycle = _context.Cycles.FirstOrDefault(c => c.Id == cycleId);
+            
             if (cycle == null)
                 return NotFound("Cycle not found.");
  
             if (cycle.Stock < quantity)
                 return BadRequest("Not enough stock available.");
+
+            var totalAmount = cycle.Price * quantity;
+
             var order = new Order
             {
                 UserId = employee != null ? employee.Id : admin.Id,
@@ -65,7 +69,11 @@ namespace CycleRetailShop.API.Controllers
                 Quantity = quantity,
                 CustomerId = customerId,
                 OrderDate = DateTime.UtcNow,
-                Status = "Pending"
+                Status = "Pending",
+                TotalAmount = totalAmount,
+                IsPaid = false,  // Initial payment status
+                PaymentMethod = null,  // Leave null for now
+                TransactionId = null  // Leave null for now
             };
  
             cycle.Stock -= quantity;
@@ -127,5 +135,59 @@ namespace CycleRetailShop.API.Controllers
             _context.SaveChanges();
             return Ok(new { message = "Order deleted successfully" });
         }
+
+        [HttpPost("complete-payment/{orderId}")]
+        [Authorize(Roles = "Admin,Employee")]
+        public IActionResult CompletePayment(int orderId, string paymentMethod, string transactionId)
+        {
+            var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
+
+            if (order == null)
+                return NotFound("Order not found.");
+
+            if (order.Status == "Paid")
+                return BadRequest("This order has already been paid.");
+
+            // Update the payment details directly on the existing order
+            order.IsPaid = true;
+            order.PaymentMethod = paymentMethod;
+            order.TransactionId = transactionId;
+            order.PaymentDate = DateTime.UtcNow;
+            order.Status = "Paid";  // Update order status to Paid
+
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                message = "Payment completed successfully.",
+                orderId = order.Id,
+                amount = order.TotalAmount,
+                paymentMethod = order.PaymentMethod,
+                transactionId = order.TransactionId
+            });
+        }
+
+
+        // Admin dashboard - Get Monthly Sales Summary
+        [HttpGet("monthly-sales")]
+        [Authorize(Roles = "Admin, Employee")]
+        public IActionResult GetMonthlySales()
+        {
+            var salesData = _context.Orders
+                .Where(o => o.Status == "Delivered")
+                .GroupBy(o => new { o.OrderDate.Year, o.OrderDate.Month })
+                .Select(g => new
+                {
+                    Month = g.Key.Month,
+                    Year = g.Key.Year,
+                    TotalRevenue = g.Sum(o => o.TotalAmount),
+                    TotalOrders = g.Count()
+                })
+                .OrderBy(x => x.Year).ThenBy(x => x.Month)
+                .ToList();
+
+            return Ok(salesData);
+        }
+        
     }
 }

@@ -29,6 +29,7 @@
           <th>Status</th>
           <th *ngIf="role!=='Employee'">Update Status</th>
           <th *ngIf="role!=='Employee'">Actions</th>
+          <th>Add To Cart</th>
         </tr>
       </thead>
       <tbody>
@@ -53,6 +54,7 @@
           <td *ngIf="role!=='Employee'">
             <button class="button2" (click)="deleteOrder(order.id, order.cycleId, order.quantity)">Delete</button>
           </td>
+          <td><button class="add_to_cart">Add To Cart</button></td>
         </tr>
       </tbody>
     </table>

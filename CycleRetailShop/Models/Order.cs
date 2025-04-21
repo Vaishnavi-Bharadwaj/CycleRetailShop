@@ -34,5 +34,14 @@ namespace CycleRetailShop.API.Models
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
 
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal TotalAmount { get; set; } 
+
+        public bool IsPaid { get; set; }
+        public string PaymentMethod { get; set; }
+        public DateTime? PaymentDate { get; set; }
+        public string TransactionId { get; set; }
+
+
     }
 }

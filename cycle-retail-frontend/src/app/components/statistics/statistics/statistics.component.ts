@@ -27,7 +27,6 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMonthlySales();
-    //this.loadOrdersByStatus();
     this.loadTopSellingCycles();
     this.loadInventorySummary();
     this.loadYearlyRevenue();
@@ -42,13 +41,11 @@ export class StatisticsComponent implements OnInit {
       title: { text: '' },
       labels: [],
       colors: [],
-      dataLabels: { enabled: false }  // Ensure dataLabels is always defined
+      dataLabels: { enabled: false } 
     };
   }
 
-  // Example color palette
   vibrantColors: string[] = ['#00E396', '#FEB019', '#FF4560', '#775DD0', '#3F51B5', '#008FFB'];
-
 
   loadMonthlySales() {
     this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/monthly-sales').subscribe(data => {
@@ -68,8 +65,6 @@ export class StatisticsComponent implements OnInit {
     });
   }
   
-  
-
   loadTopSellingCycles() {
     this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/top-selling-cycles').subscribe(data => {
       this.topSellingCycles = {
@@ -112,7 +107,6 @@ export class StatisticsComponent implements OnInit {
       };
     });
   }
-  
 
   loadYearlyRevenue() {
     this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/yearly-revenue').subscribe(data => {
@@ -129,10 +123,8 @@ export class StatisticsComponent implements OnInit {
         labels: [],                           
         colors: ['#775DD0']
       };
-      
     });
   }
-
 }
 
 export type ChartOptions = {

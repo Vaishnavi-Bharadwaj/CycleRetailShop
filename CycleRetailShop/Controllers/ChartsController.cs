@@ -36,22 +36,6 @@ namespace CycleRetailShop.API.Controllers
             return Ok(salesData);
         }
 
-        // //Orders by Status
-        // [HttpGet("admin-dashboard/orders-by-status")]
-        // public IActionResult GetOrdersByStatus()
-        // {
-        //     var statusData = _context.Orders
-        //         .GroupBy(o => o.Status)
-        //         .Select(g => new
-        //         {
-        //             Status = g.Key,
-        //             Count = g.Count()
-        //         })
-        //         .ToList();
-
-        //     return Ok(statusData);
-        // }
-
         //Top Selling Cycles
         [HttpGet("admin-dashboard/top-selling-cycles")]
         public IActionResult GetTopSellingCycles()
