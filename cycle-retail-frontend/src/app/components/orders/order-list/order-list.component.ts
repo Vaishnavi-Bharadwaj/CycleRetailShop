@@ -111,7 +111,6 @@ export class OrderListComponent implements OnInit {
       orderId: order.id
     };
   
-    // Call a cart service to add the item
     this.cartService.addItem(cartItem);
     this.router.navigate(['/payment']);
 

@@ -11,6 +11,7 @@ interface Cycle {
   type: string;
   price: number;
   stock: number;
+  imageUrl?: string;
 }
 
 @Component({
@@ -23,7 +24,19 @@ export class CycleListComponent implements OnInit{
   newCycle: Partial<Cycle> = {};
   editingCycle: any = null;
   role: string = '';
-  
+  imageUrls: string[] = [
+    'assets/cycle1_new.png',
+    'assets/cycle2_new.png',
+    'assets/cycle4_new.png',
+    'assets/cycle6_new.png',
+    'assets/cycle7_new.png',
+    'assets/cycle8_new.png',
+    'assets/cycle9_new.png',
+    'assets/cycle3_new.png',
+    'assets/cycle5_new.png',
+  ];
+  defaultImage = 'assets/cycle1.png';
+
   constructor(private http: HttpClient, private authService:AuthService, private toast:ToastrService) {}
 
   ngOnInit(): void {
@@ -31,9 +44,19 @@ export class CycleListComponent implements OnInit{
     this.fetchCycles();
   }
 
+  
   fetchCycles() {
     this.http.get<Cycle[]>('https://localhost:5001/api/cycles')
-      .subscribe(data => this.cycles = data);
+    .subscribe(data => {
+      this.cycles = data;
+      this.assignImagesToCycles();
+    });
+  }
+
+  assignImagesToCycles() {
+    this.cycles.forEach((cycle, index) => {
+      cycle.imageUrl = this.imageUrls[index % this.imageUrls.length];
+    });
   }
 
   addCycle() {

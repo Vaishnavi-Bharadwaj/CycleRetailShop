@@ -1,47 +1,36 @@
 <div class="background-wrapper">
-<div class="cycle-container">
-  <h2>🚲 Cycle Management</h2>
+  <div class="cycle-container">
+    <h2>🚲 Cycle Management</h2>
 
-  <!-- Add Cycle Form -->
-  <div class="form-container" *ngIf="role!=='Employee'">
-    <input [(ngModel)]="newCycle.modelName" placeholder="Model Name">
-    <input [(ngModel)]="newCycle.brand" placeholder="Brand">
-    <input [(ngModel)]="newCycle.type" placeholder="Type">
-    <input [(ngModel)]="newCycle.price" type="number" placeholder="Price">
-    <input [(ngModel)]="newCycle.stock" type="number" placeholder="Stock">
-    <button (click)="addCycle()">➕ Add Cycle</button>
-  </div>
+    <!-- Add Cycle Form -->
+    <div class="form-container" *ngIf="role!=='Employee'">
+      <input [(ngModel)]="newCycle.modelName" placeholder="Model Name">
+      <input [(ngModel)]="newCycle.brand" placeholder="Brand">
+      <input [(ngModel)]="newCycle.type" placeholder="Type">
+      <input [(ngModel)]="newCycle.price" type="number" placeholder="Price">
+      <input [(ngModel)]="newCycle.stock" type="number" placeholder="Stock">
+      <button (click)="addCycle()">➕ Add Cycle</button>
+    </div>
 
-  <!-- Cycle Table -->
-  <table class="cycle-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Model</th>
-        <th>Brand</th>
-        <th>Type</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th *ngIf="role!=='Employee'">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cycle of cycles">
-        <td>{{ cycle.id }}</td>
-        <td>{{ cycle.modelName }}</td>
-        <td>{{ cycle.brand }}</td>
-        <td>{{ cycle.type }}</td>
-        <td>₹{{ cycle.price }}</td>
-        <td>{{ cycle.stock }}</td>
-        <td *ngIf="role!=='Employee'">
+    <!-- Cycle Cards Grid -->
+    <div class="cycle-grid">
+      <div class="cycle-card" *ngFor="let cycle of cycles">
+        <img [src]="cycle.imageUrl" alt="{{ cycle.modelName }}" class="cycle-image" />
+        <h3>{{ cycle.modelName }}</h3>
+        <p><strong>Brand:</strong> {{ cycle.brand }}</p>
+        <p><strong>Type:</strong> {{ cycle.type }}</p>
+        <p><strong>Price:</strong> ₹{{ cycle.price }}</p>
+        <p><strong>Stock:</strong> {{ cycle.stock }}</p>
+
+        <div *ngIf="role !== 'Employee'" class="card-actions">
           <button class="update" (click)="editCycle(cycle)">Update</button>
           <button class="delete" (click)="deleteCycle(cycle.id)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+
 <!-- Modal for Updating Cycle -->
 <div class="modal-overlay" *ngIf="editingCycle">
   <div class="modal-content">

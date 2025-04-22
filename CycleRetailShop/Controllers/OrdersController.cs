@@ -140,6 +140,9 @@ namespace CycleRetailShop.API.Controllers
         [Authorize(Roles = "Admin,Employee")]
         public IActionResult CompletePayment(int orderId, [FromBody] PaymentRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
 
             if (order == null)
@@ -153,8 +156,7 @@ namespace CycleRetailShop.API.Controllers
             order.PaymentMethod = request.PaymentMethod;
             order.TransactionId = request.TransactionId;
             order.PaymentDate = DateTime.UtcNow;
-            order.Status = "Paid";
-
+            
             _context.SaveChanges();
 
             return Ok(new

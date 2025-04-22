@@ -1,61 +1,85 @@
+// :host {
+//   display: block;
+//   padding: 2rem;
+//   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//   background-color: #e3e1e4; // Misty Lavender
+//   min-height: 100vh;
+// }
+
 :host {
-    display: block;
-    padding: 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    //background-color: #f9f9f9;
-    //background-color: #aaa4a4;
-    background-color: #8c8383;
-    min-height: 100vh;
-  }
-  
-  h1 {
-    color: white;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 0.5rem;
-    text-align: center;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
+  display: block;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e3e1e4; 
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0e6f6, #dceff2, #f8ecec);
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+
+h1 {
+  color: #6c6a6d; 
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #bdb6c5;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f0f0f5; 
+  border: 1px solid #dcdde1; 
+  border-left: 6px solid #c8c6d7; 
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-left: 5px solid #4CAF50;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
-    
-    display: flex;           
-    align-items: center;     
-    gap: 10px;   
+  }
+}
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-  }
-  
-  li::before {
-    margin-right: 8px;
-    font-size: 1.2rem;
-  }
-  
-  .cycle {
-    width: 45px;
-    margin-right: 18px;
-  }
+.cycle {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 10px;
+}
 
-  button.delete {
-    background-color: #413d3d;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-left: auto;
+button.delete {
+  background-color: #b8b5b9; 
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #a19ba6;
   }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

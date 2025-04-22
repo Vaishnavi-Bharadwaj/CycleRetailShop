@@ -40,7 +40,8 @@ export class PaymentComponent {
     };
   
     const headers = {
-      Authorization: `Bearer ${localStorage.getItem('token')}` // or however you store it
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     };
   
     this.http.post(`https://localhost:5001/api/orders/complete-payment/${this.orderId}`, payload, { headers })
@@ -49,13 +50,15 @@ export class PaymentComponent {
           this.successMessage = res.message;
           this.paymentSuccess = true;
           this.generateReceipt(res);
-  
+          this.toast.success('Payment completed!', 'Success');
+
           setTimeout(() => {
             this.router.navigate(['/order-list']);
           }, 3000);
         },
         error: (err) => {
-          this.errorMessage = err.error || 'Something went wrong';
+          this.errorMessage = err?.error?.message || 'Something went wrong';
+          this.toast.error(this.errorMessage, 'Error');
         }
       });
   }

@@ -15,33 +15,24 @@
       </select>
       <button (click)="placeOrder()" >Place Order</button>
     </div>
-  
-    <!-- Orders Table -->
-    <table class="order-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Cycle ID</th>
-          <th>User ID</th>
-          <th>Customer ID</th>
-          <th>Quantity</th>
-          <th>Order Date</th>
-          <th>Status</th>
-          <th *ngIf="role!=='Employee'">Update Status</th>
-          <th *ngIf="role!=='Employee'">Actions</th>
-          <th>Add To Cart</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders">
-          <td>{{ order.id }}</td>
-          <td>{{ order.cycleId }}</td>
-          <td>{{ order.userId }}</td>
-          <td>{{ order.customerId}}</td>
-          <td>{{ order.quantity }}</td>
-          <td>{{ order.orderDate | date:'short' }}</td>
-          <td>{{ order.status }}</td>
-          <td *ngIf="role!=='Employee'">
+
+    <div class="order-cards">
+      <div class="order-card" *ngFor="let order of orders">
+        <div class="card-header">
+          <h3>Order #{{ order.id }}</h3>
+          <span>Status: {{ order.status }}</span>
+        </div>
+    
+        <div class="card-body">
+          <p><strong>Cycle ID:</strong> {{ order.cycleId }}</p>
+          <p><strong>User ID:</strong> {{ order.userId }}</p>
+          <p><strong>Customer ID:</strong> {{ order.customerId }}</p>
+          <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+          <p><strong>Date:</strong> {{ order.orderDate | date:'short' }}</p>
+        </div>
+    
+        <div class="card-actions">
+          <div *ngIf="role!=='Employee'">
             <select [(ngModel)]="statusUpdate[order.id]">
               <option *ngFor="let s of ['Pending', 'Approved', 'Shipped', 'Delivered']"
                       [value]="s"
@@ -50,14 +41,12 @@
               </option>
             </select>
             <button class="button1" (click)="updateStatus(order.id)">Update</button>
-          </td>
-          <td *ngIf="role!=='Employee'">
             <button class="button2" (click)="deleteOrder(order.id, order.cycleId, order.quantity)">Delete</button>
-          </td>
-          <td><button class="add_to_cart" (click)="addToCart(order)">Add To Cart</button></td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+          <button class="add_to_cart" (click)="addToCart(order)">Add To Cart</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div> 
   
