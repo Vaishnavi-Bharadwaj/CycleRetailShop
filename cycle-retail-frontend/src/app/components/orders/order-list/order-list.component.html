@@ -54,7 +54,7 @@
           <td *ngIf="role!=='Employee'">
             <button class="button2" (click)="deleteOrder(order.id, order.cycleId, order.quantity)">Delete</button>
           </td>
-          <td><button class="add_to_cart">Add To Cart</button></td>
+          <td><button class="add_to_cart" (click)="addToCart(order)">Add To Cart</button></td>
         </tr>
       </tbody>
     </table>

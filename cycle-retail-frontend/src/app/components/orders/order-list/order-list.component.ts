@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
@@ -24,7 +25,7 @@ export class OrderListComponent implements OnInit {
     'Delivered': 4
   };
   
-  constructor(private http: HttpClient, private authService: AuthService, private toast: ToastrService) {}
+  constructor(private http: HttpClient, private authService: AuthService, private toast: ToastrService, private cartService:AuthService, private router:Router) {}
 
   ngOnInit() {
     this.role = localStorage.getItem('role') || '';
@@ -102,4 +103,18 @@ export class OrderListComponent implements OnInit {
       }
     });
   }
+
+  addToCart(order: any) {
+    const cartItem = {
+      cycleId: order.cycleId,
+      quantity: order.quantity,
+      orderId: order.id
+    };
+  
+    // Call a cart service to add the item
+    this.cartService.addItem(cartItem);
+    this.router.navigate(['/payment']);
+
+  }
+  
 }

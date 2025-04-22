@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
   //private apiUrl = 'http://localhost:5001/api/auth'; 
   private apiUrl = 'https://localhost:5001/api/charts'; 
+  private cart: any[] = [];
 
   constructor(private http: HttpClient, private toast: ToastrService) {}
   
@@ -77,6 +78,19 @@ export class AuthService {
   // Get Yearly Revenue Data
   getYearlyRevenue(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/admin-dashboard/yearly-revenue`);
+  }
+
+  addItem(item: any) {
+    this.cart.push(item);
+    console.log('Cart:', this.cart);
+  }
+
+  getCart() {
+    return this.cart;
+  }
+
+  clearCart() {
+    this.cart = [];
   }
   
 }

@@ -10,6 +10,7 @@ import { CycleListComponent } from './components/cycles/cycle-list/cycle-list.co
 import { EmployeesComponent } from './components/employees/employees.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { StatisticsComponent } from './components/statistics/statistics/statistics.component';
+import { PaymentComponent } from './components/payment/payment/payment.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
@@ -20,7 +21,9 @@ const routes: Routes = [
   { path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard]},
   { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard]},
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
+
 ];
 
 @NgModule({

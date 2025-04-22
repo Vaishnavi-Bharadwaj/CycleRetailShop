@@ -138,7 +138,7 @@ namespace CycleRetailShop.API.Controllers
 
         [HttpPost("complete-payment/{orderId}")]
         [Authorize(Roles = "Admin,Employee")]
-        public IActionResult CompletePayment(int orderId, string paymentMethod, string transactionId)
+        public IActionResult CompletePayment(int orderId, [FromBody] PaymentRequest request)
         {
             var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
 
@@ -148,12 +148,12 @@ namespace CycleRetailShop.API.Controllers
             if (order.Status == "Paid")
                 return BadRequest("This order has already been paid.");
 
-            // Update the payment details directly on the existing order
+            // Update the payment details
             order.IsPaid = true;
-            order.PaymentMethod = paymentMethod;
-            order.TransactionId = transactionId;
+            order.PaymentMethod = request.PaymentMethod;
+            order.TransactionId = request.TransactionId;
             order.PaymentDate = DateTime.UtcNow;
-            order.Status = "Paid";  // Update order status to Paid
+            order.Status = "Paid";
 
             _context.SaveChanges();
 
@@ -163,30 +163,9 @@ namespace CycleRetailShop.API.Controllers
                 orderId = order.Id,
                 amount = order.TotalAmount,
                 paymentMethod = order.PaymentMethod,
-                transactionId = order.TransactionId
+                transactionId = order.TransactionId,
+                paymentDate = order.PaymentDate
             });
-        }
-
-
-        // Admin dashboard - Get Monthly Sales Summary
-        [HttpGet("monthly-sales")]
-        [Authorize(Roles = "Admin, Employee")]
-        public IActionResult GetMonthlySales()
-        {
-            var salesData = _context.Orders
-                .Where(o => o.Status == "Delivered")
-                .GroupBy(o => new { o.OrderDate.Year, o.OrderDate.Month })
-                .Select(g => new
-                {
-                    Month = g.Key.Month,
-                    Year = g.Key.Year,
-                    TotalRevenue = g.Sum(o => o.TotalAmount),
-                    TotalOrders = g.Count()
-                })
-                .OrderBy(x => x.Year).ThenBy(x => x.Month)
-                .ToList();
-
-            return Ok(salesData);
         }
         
     }

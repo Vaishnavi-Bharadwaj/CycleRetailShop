@@ -1,0 +1,40 @@
+<div class="payment-page-wrapper">
+<div class="dummy-payment-container">
+    <h2><strong>Complete The Payment</strong></h2>
+  
+    <label>Select Payment Method:</label>
+    <select [(ngModel)]="selectedMethod" (change)="onMethodSelect()">
+      <option value="">-- Select --</option>
+      <option value="Card">Card</option>
+      <option value="Scan">Scan & Pay</option>
+      <option value="Cash">Cash</option>
+    </select>
+  
+    <div *ngIf="showQRCode">
+      <p>Scan this QR to pay:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TestPayment" 
+     alt="QR Code" 
+     class="qr-image">
+
+      <input type="text" placeholder="Enter Transaction ID" [(ngModel)]="transactionId" />
+    </div>
+  
+    <div *ngIf="showCardForm" class="card-form">
+      <input type="text" placeholder="Card Number" />
+      <input type="text" placeholder="Name on Card" />
+      <input type="text" placeholder="Expiry (MM/YY)" />
+      <input type="text" placeholder="CVV" />
+      <input type="text" placeholder="Enter Transaction ID" [(ngModel)]="transactionId" />
+    </div>
+  
+    <div *ngIf="showCashMessage">
+      <p>Please collect cash payment manually.</p>
+    </div>
+  
+    <button (click)="completePayment()">Complete Payment</button>
+  
+    <div *ngIf="paymentSuccess" class="success">
+      Payment Successful! 
+    </div>
+  </div>
+</div>
