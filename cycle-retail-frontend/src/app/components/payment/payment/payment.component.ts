@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { jsPDF } from 'jspdf';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -11,15 +12,23 @@ import { ToastrService } from 'ngx-toastr';
 export class PaymentComponent {
   orderId: number | null = null;
   selectedMethod: string = '';
-  transactionId: string = '';
   showQRCode: boolean = false;
   showCardForm: boolean = false;
   showCashMessage: boolean = false;
   paymentSuccess: boolean = false;
   successMessage: string = '';  
   errorMessage: string = '';     
+  isLoading: boolean = false;
+  ModelName: boolean = false;
 
-  constructor(private router: Router, private http: HttpClient, private toast: ToastrService) {}
+  cardDetails = {
+    cardNumber: '',
+    nameOnCard: '',
+    expiry: '',
+    cvv: ''
+  };
+
+  constructor(private router: Router, private http: HttpClient, private toast: ToastrService, private route: ActivatedRoute, private authService: AuthService) {}
 
   onMethodSelect() {
     this.showQRCode = this.selectedMethod === 'Scan';
@@ -28,54 +37,52 @@ export class PaymentComponent {
     this.paymentSuccess = false;
   }
 
-  completePayment() {
-    if (!this.transactionId && this.selectedMethod !== 'Cash') {
-      this.toast.warning('Please enter a transaction ID', 'Warning');
-      return;
-    }
+  ngOnInit() {
+    this.orderId = Number(this.route.snapshot.paramMap.get('id'));
+  }
 
+  completePayment() {
+
+    this.isLoading = true; // Start loader
+    
     const payload = {
-      paymentMethod: this.selectedMethod,
-      transactionId: this.transactionId || 'Cash Payment'
+      paymentMethod: this.selectedMethod
     };
-  
+    
+    const token = this.authService.getToken();
     const headers = {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${token}`
     };
-  
+
+    if (this.selectedMethod === 'Card') {
+      const { cardNumber, nameOnCard, expiry, cvv } = this.cardDetails;
+      if (!cardNumber || !nameOnCard || !expiry || !cvv) {
+        this.toast.error('Please fill all card details.', 'Validation Error');
+        this.isLoading = false;
+        return;
+      }
+    }
+    
+
     this.http.post(`https://localhost:5001/api/orders/complete-payment/${this.orderId}`, payload, { headers })
       .subscribe({
         next: (res: any) => {
           this.successMessage = res.message;
           this.paymentSuccess = true;
-          this.generateReceipt(res);
-          this.toast.success('Payment completed!', 'Success');
+          this.toast.success(this.successMessage, 'Success');
+          this.isLoading = false; // Stop loader
 
-          setTimeout(() => {
-            this.router.navigate(['/order-list']);
-          }, 3000);
+          this.router.navigate(['/payment-details'], {
+            state: { receiptData: res }
+          });
         },
         error: (err) => {
           this.errorMessage = err?.error?.message || 'Something went wrong';
           this.toast.error(this.errorMessage, 'Error');
+          this.isLoading = false; // Stop loader
         }
       });
-  }
-
-  generateReceipt(orderDetails: any) {
-    const doc = new jsPDF();
+  } 
   
-    doc.setFontSize(16);
-    doc.text('Payment Receipt', 20, 20);
-    doc.setFontSize(12);
-    doc.text(`Order ID: ${orderDetails.orderId}`, 20, 40);
-    doc.text(`Payment Method: ${orderDetails.paymentMethod}`, 20, 50);
-    doc.text(`Transaction ID: ${orderDetails.transactionId}`, 20, 60);
-    doc.text(`Amount Paid: ₹${orderDetails.amount}`, 20, 70);
-    doc.text(`Payment Date: ${new Date().toLocaleString()}`, 20, 80);
-  
-    doc.save(`Receipt_${orderDetails.orderId}.pdf`);
-  }
-
 }

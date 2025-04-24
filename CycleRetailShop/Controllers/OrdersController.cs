@@ -25,17 +25,16 @@ namespace CycleRetailShop.API.Controllers
             var username = User.Identity.Name;
 
             if (string.IsNullOrEmpty(username))
-                return Unauthorized("Username claim missing in token.");
+                return Unauthorized(new{ message= "Username claim missing in token."});
             var user = _context.Users.FirstOrDefault(u => u.Username == username);
  
             if (user == null)
-                return Unauthorized("User not found.");
+                return Unauthorized(new{ message= "User not found."});
  
             var allOrders = _context.Orders.ToList();
             return Ok(allOrders);
         }
 
-        //Employees can place orders
         [HttpPost("create/{cycleId}/{quantity}/{customerId}")]
         [Authorize(Roles = "Admin,Employee")]
         public IActionResult CreateOrder(int cycleId, int quantity, int customerId)
@@ -43,22 +42,22 @@ namespace CycleRetailShop.API.Controllers
             var username = User.Identity?.Name;
             
             if (string.IsNullOrEmpty(username))
-                return Unauthorized("Username claim missing in token.");
+                return Unauthorized(new{ message= "Username claim missing in token."});
 
             var employee = _context.Users.FirstOrDefault(u => u.Username == username && u.Role == "Employee");
             var admin = _context.Users.FirstOrDefault(u => u.Username == username && u.Role == "Admin");
 
  
             if (employee == null && admin == null)
-                return BadRequest("Invalid user.");
+                return BadRequest(new{ message= "Invalid user."});
  
             var cycle = _context.Cycles.FirstOrDefault(c => c.Id == cycleId);
             
             if (cycle == null)
-                return NotFound("Cycle not found.");
+                return NotFound(new{ message= "Cycle not found."});
  
             if (cycle.Stock < quantity)
-                return BadRequest("Not enough stock available.");
+                return BadRequest(new{ message= "Not enough stock available."});
 
             var totalAmount = cycle.Price * quantity;
 
@@ -72,15 +71,15 @@ namespace CycleRetailShop.API.Controllers
                 Status = "Pending",
                 TotalAmount = totalAmount,
                 IsPaid = false,  // Initial payment status
-                PaymentMethod = null,  // Leave null for now
-                TransactionId = null  // Leave null for now
+                PaymentMethod = null, 
+                
             };
  
             cycle.Stock -= quantity;
             _context.Orders.Add(order);
             _context.SaveChanges();
  
-            return Ok("Order placed successfully.");
+            return Ok(new{ message= "Order placed successfully."});
         }
 
         // Admins can update order status 
@@ -89,41 +88,32 @@ namespace CycleRetailShop.API.Controllers
         public IActionResult UpdateOrder(int cycleId, string status)
         {
             var order = _context.Orders.Find(cycleId);
-            if (order == null) return NotFound("Order not found.");
+            if (order == null) 
+                return NotFound(new{ message= "Order not found."});
 
             order.Status = status;
             _context.SaveChanges();
-            return Ok("Order status updated");
+            return Ok(new{ message= "Order status updated"});
         }
 
-        // Employees can delete the order if the status is pending, Admin can delete any order
+        // Admin can delete the order
         [HttpDelete("delete/{orderId}")]
         [Authorize(Roles = "Admin,Employee")]
         public IActionResult DeleteOrder(int orderId, [FromQuery] int cycleId, [FromQuery] int quantity)
         {
             var username = User.Identity.Name;
             if (string.IsNullOrEmpty(username))
-                return Unauthorized("Username claim missing in token.");
+                return Unauthorized(new{ message= "Username claim missing in token."});
 
             var user = _context.Users.FirstOrDefault(u => u.Username == username);
  
             if (user == null)
-                return Unauthorized("User not found.");
+                return Unauthorized(new{ message= "User not found."});
  
             var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
  
             if (order == null)
-                return NotFound("Order not found.");
- 
-            // Employees can only delete their own orders if the status is 'Pending'
-            if (user.Role == "Employee")
-            {
-                if (order.UserId != user.Id)
-                    return BadRequest("You can only delete your own orders.");
- 
-                if (order.Status != "Pending")
-                    return BadRequest("Only orders with 'Pending' status can be deleted.");
-            }
+                return NotFound(new{ message= "Order not found."});
 
             // Admins can delete any order
             _context.Orders.Remove(order); 
@@ -140,33 +130,65 @@ namespace CycleRetailShop.API.Controllers
         [Authorize(Roles = "Admin,Employee")]
         public IActionResult CompletePayment(int orderId, [FromBody] PaymentRequest request)
         {
+            // if (!ModelState.IsValid)
+            //     return BadRequest(ModelState);
+
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            {
+                var error = ModelState.Values.SelectMany(v => v.Errors)
+                                            .Select(e => e.ErrorMessage)
+                                            .FirstOrDefault();
+
+                return BadRequest(new { message = error ?? "Invalid input" });
+            }
 
             var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
-
+            
             if (order == null)
-                return NotFound("Order not found.");
+                return NotFound(new{ message= "Order not found."});
 
-            if (order.Status == "Paid")
-                return BadRequest("This order has already been paid.");
+            if (order.Status == "Approved")
+                return BadRequest(new{ message= "This order has already been paid."});
+
+            Cycle? cycle = null;
+            if (order.CycleId > 0)
+            {
+                cycle = _context.Cycles.FirstOrDefault(c => c.Id == order.CycleId);
+            }
+            
+            Console.WriteLine($"Order TotalAmount: {order.TotalAmount}");
+            if (order.TotalAmount <= 0)
+            {
+                return BadRequest(new{ message= "Total amount is invalid."});
+            }
 
             // Update the payment details
             order.IsPaid = true;
             order.PaymentMethod = request.PaymentMethod;
-            order.TransactionId = request.TransactionId;
             order.PaymentDate = DateTime.UtcNow;
             
+             var payment = new PaymentDetails
+            {
+                OrderId = order.Id,
+                PaymentMethod = request.PaymentMethod,
+                Amount = order.TotalAmount,
+                PaymentDate = order.PaymentDate ?? DateTime.UtcNow,
+                CycleName = cycle?.ModelName ?? "N/A"
+            };
+            
+            order.Status = "Approved";
+            _context.PaymentDetails.Add(payment);
             _context.SaveChanges();
 
+            
             return Ok(new
             {
                 message = "Payment completed successfully.",
                 orderId = order.Id,
                 amount = order.TotalAmount,
                 paymentMethod = order.PaymentMethod,
-                transactionId = order.TransactionId,
-                paymentDate = order.PaymentDate
+                paymentDate = order.PaymentDate,
+                cycleName= cycle.ModelName
             });
         }
         

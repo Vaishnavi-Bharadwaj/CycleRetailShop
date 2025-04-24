@@ -1,0 +1,17 @@
+<div class="receipt-preview-wrapper" *ngIf="receiptData">
+    <h2 class="title">Payment Receipt Preview</h2>
+  
+    <div class="receipt-box">
+      <p><strong>Order ID:</strong> {{ receiptData.orderId }}</p>
+      <p><strong>Model Name:</strong> {{ receiptData.cycleName }}</p>
+      <p><strong>Payment Method:</strong> {{ receiptData.paymentMethod }}</p>
+      <p><strong>Amount Paid:</strong> ₹{{ receiptData.amount }}</p>
+      <p><strong>Payment Date:</strong> {{ currentDate }}</p>
+    </div>
+  
+    <div class="actions">
+      <button (click)="generateReceipt(receiptData)">Download PDF</button>
+      <button routerLink="/orders" class="back-button">Back to Orders</button>
+    </div>
+  </div>
+  

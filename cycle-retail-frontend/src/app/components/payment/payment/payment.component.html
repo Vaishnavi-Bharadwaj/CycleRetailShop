@@ -15,16 +15,13 @@
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TestPayment" 
      alt="QR Code" 
      class="qr-image">
-
-      <input type="text" placeholder="Enter Transaction ID" [(ngModel)]="transactionId" />
     </div>
   
     <div *ngIf="showCardForm" class="card-form">
-      <input type="text" placeholder="Card Number" />
-      <input type="text" placeholder="Name on Card" />
-      <input type="text" placeholder="Expiry (MM/YY)" />
-      <input type="text" placeholder="CVV" />
-      <input type="text" placeholder="Enter Transaction ID" [(ngModel)]="transactionId" />
+      <input type="text" [(ngModel)]="cardDetails.cardNumber" placeholder="Card Number" required/>
+      <input type="text" [(ngModel)]="cardDetails.nameOnCard" placeholder="Name on Card" required/>
+      <input type="text" [(ngModel)]="cardDetails.expiry" placeholder="Expiry (MM/YY)" required/>
+      <input type="text" [(ngModel)]="cardDetails.cvv" placeholder="CVV" required/>
     </div>
   
     <div *ngIf="showCashMessage">
@@ -36,5 +33,8 @@
     <div *ngIf="paymentSuccess" class="success">
       Payment Successful! 
     </div>
+  </div>
+  <div *ngIf="isLoading" class="loader-overlay">
+    <div class="spinner"></div>
   </div>
 </div>

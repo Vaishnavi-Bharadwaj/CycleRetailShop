@@ -31,10 +31,10 @@ namespace CycleRetailShop.API.Controllers
             role = role?.Trim().ToLower();
 
             if (_context.Users.Any(u => u.Username == username))
-                return BadRequest("User already exists");
+                return BadRequest(new { message = "User already exists"});
 
             if (role != "admin" && role != "employee")
-                return BadRequest("Invalid role. Choose 'Admin' or 'Employee'");
+                return BadRequest(new { message = "Invalid role. Choose 'Admin' or 'Employee'"});
 
             role = char.ToUpper(role[0]) + role.Substring(1).ToLower();
 
@@ -76,7 +76,7 @@ namespace CycleRetailShop.API.Controllers
             {
                 user = _context.Users.FirstOrDefault(u => u.Username == username && u.Role==role);
                 if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
-                    return Unauthorized("Invalid username or password");
+                    return Unauthorized(new { message = "Invalid username or password"});
             }
             
 
@@ -111,7 +111,7 @@ namespace CycleRetailShop.API.Controllers
 
             _context.Users.Remove(employee);
             _context.SaveChanges();
-            return Ok("Cycle deleted successfully.");
+            return Ok(new { message = "Cycle deleted successfully."});
         }
         
         private string GenerateJwtToken(User user)

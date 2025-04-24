@@ -12,5 +12,6 @@ namespace CycleRetailShop.API.Data
         public DbSet<Cycle> Cycles { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<PaymentDetails> PaymentDetails { get; set; }
     }
 }

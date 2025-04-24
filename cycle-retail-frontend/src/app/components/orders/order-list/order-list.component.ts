@@ -17,6 +17,8 @@ export class OrderListComponent implements OnInit {
   customerId: number | null = null;
   statusUpdate: { [key: number]: string } = {};
   role: string = '';
+  successMessage: string = '';
+  errorMessage: string = '';
 
   statusPriority: { [key: string]: number } = {
     'Pending': 1,
@@ -67,9 +69,10 @@ export class OrderListComponent implements OnInit {
   placeOrder() {
     const headers = this.getHeaders();
     const url = `https://localhost:5001/api/orders/create/${this.cycleId}/${this.quantity}/${this.customerId}`;
-    this.http.post(url, null, { headers, responseType: 'text' }).subscribe({
-      next: () => {
-        this.toast.success('Order placed!', 'Success');
+    this.http.post(url, null, { headers }).subscribe({
+      next: (res: any) => {
+        this.successMessage=res.message
+        this.toast.success(this.successMessage, 'Success');
         this.fetchOrders();
       },
       error: () => this.toast.error('Error placing order', 'Error')
@@ -112,7 +115,7 @@ export class OrderListComponent implements OnInit {
     };
   
     this.cartService.addItem(cartItem);
-    this.router.navigate(['/payment']);
+    this.router.navigate(['/payment', order.id]);
 
   }
   

@@ -17,6 +17,7 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { StatisticsComponent } from './components/statistics/statistics/statistics.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { PaymentComponent } from './components/payment/payment/payment.component';
+import { PaymentDetailsComponent } from './components/payment_details/payment-details/payment-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { PaymentComponent } from './components/payment/payment/payment.component
     CustomersComponent,
     StatisticsComponent,
     PaymentComponent,
+    PaymentDetailsComponent,
     
   ],
   imports: [
