@@ -47,24 +47,6 @@ export class StatisticsComponent implements OnInit {
 
   vibrantColors: string[] = ['#00E396', '#FEB019', '#FF4560', '#775DD0', '#3F51B5', '#008FFB'];
 
-  // loadMonthlySales() {
-  //   this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/monthly-sales').subscribe(data => {
-  //     this.monthlySales = {
-  //       series: [
-  //         {
-  //           name: 'Sales',
-  //           data: data.map(item => item.totalSales)
-  //         }
-  //       ],
-  //       chart: { type: 'line', height: 350, foreColor: '#ffffff' },
-  //       xaxis: { categories: data.map(item => item.month) },
-  //       title: { text: 'Monthly Sales' },
-  //       labels: [],                             
-  //       colors: ['#00e396']
-  //     };
-  //   });
-  // }
-
   loadMonthlySales() {
     this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/monthly-sales').subscribe(data => {
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -146,23 +128,44 @@ export class StatisticsComponent implements OnInit {
   }
 
   loadYearlyRevenue() {
-    this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/yearly-revenue').subscribe(data => {
-      this.yearlyRevenue = {
-        series: [
-          {
-            name: 'Revenue',
-            data: data.map(item => item.revenue)
+    this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/yearly-revenue')
+      .subscribe(data => {
+        data.sort((a, b) => a.year - b.year);
+  
+        const years = data.map(item => item.year);
+        const revenues = data.map(item => item.revenue);
+  
+        this.yearlyRevenue = {
+          series: [
+            {
+              name: 'Revenue',
+              data: revenues
+            }
+          ],
+          chart: {
+            type: 'area',
+            height: 350,
+            foreColor: '#FFFFFF'
+          },
+          xaxis: {
+            categories: years
+          },
+          title: {
+            text: 'Yearly Revenue',
+            style: { color: '#FFFFFF' }
+          },
+          colors: ['#775DD0'],
+          labels: [],       
+          tooltip: {
+            y: {
+              formatter: (val: number) => `₹ ${val.toLocaleString()}`
+            }
           }
-        ],
-        chart: { type: 'area', height: 350, foreColor: '#FFFFFF' },
-        xaxis: { categories: data.map(item => item.year) },
-        title: { text: 'Yearly Revenue' },
-        labels: [],                           
-        colors: ['#775DD0']
-      };
-    });
+        };
+      }, error => {
+        console.error('Error loading yearly revenue:', error);
+      });
   }
-
   
 }
 

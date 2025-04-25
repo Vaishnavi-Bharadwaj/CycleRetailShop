@@ -91,6 +91,21 @@ namespace CycleRetailShop.API.Controllers
                 .OrderBy(g => g.Year)
                 .ToList();
 
+            var currentYear = DateTime.Now.Year;
+            var allYears = Enumerable.Range(currentYear - 2, 5); // e.g., 2024, 2025, 2026
+
+            // Add missing years with revenue = 0
+            foreach (var year in allYears)
+            {
+                if (!yearlyData.Any(y => y.Year == year))
+                {
+                    yearlyData.Add(new { Year = year, Revenue = 0m });
+                }
+            }
+
+            // Sort again after adding missing years
+            yearlyData = yearlyData.OrderBy(y => y.Year).ToList();
+
             return Ok(yearlyData);
         }
 
