@@ -47,23 +47,60 @@ export class StatisticsComponent implements OnInit {
 
   vibrantColors: string[] = ['#00E396', '#FEB019', '#FF4560', '#775DD0', '#3F51B5', '#008FFB'];
 
+  // loadMonthlySales() {
+  //   this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/monthly-sales').subscribe(data => {
+  //     this.monthlySales = {
+  //       series: [
+  //         {
+  //           name: 'Sales',
+  //           data: data.map(item => item.totalSales)
+  //         }
+  //       ],
+  //       chart: { type: 'line', height: 350, foreColor: '#ffffff' },
+  //       xaxis: { categories: data.map(item => item.month) },
+  //       title: { text: 'Monthly Sales' },
+  //       labels: [],                             
+  //       colors: ['#00e396']
+  //     };
+  //   });
+  // }
+
   loadMonthlySales() {
     this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/monthly-sales').subscribe(data => {
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const monthlySalesData = new Array(12).fill(0); 
+  
+      data.forEach(item => {
+        const monthIndex = months.indexOf(item.month.substring(0, 3));  
+        if (monthIndex >= 0) {
+          monthlySalesData[monthIndex] = item.totalSales;  
+        }
+      });
+  
       this.monthlySales = {
         series: [
           {
-            name: 'Sales',
-            data: data.map(item => item.totalSales)
+            name: 'Total Sales',
+            data: monthlySalesData  
           }
         ],
-        chart: { type: 'line', height: 350, foreColor: '#ffffff' },
-        xaxis: { categories: data.map(item => item.month) },
+        chart: { 
+          type: 'line', 
+          height: 350, 
+          foreColor: '#ffffff' 
+        },
+        xaxis: { 
+          categories: months  
+        },
         title: { text: 'Monthly Sales' },
-        labels: [],                             
-        colors: ['#00e396']
+        labels: [],
+        colors: ['#00E396'],  
       };
+    }, error => {
+      console.error('Error loading monthly sales:', error);
     });
   }
+  
   
   loadTopSellingCycles() {
     this.http.get<any[]>('https://localhost:5001/api/charts/admin-dashboard/top-selling-cycles').subscribe(data => {
@@ -125,6 +162,8 @@ export class StatisticsComponent implements OnInit {
       };
     });
   }
+
+  
 }
 
 export type ChartOptions = {

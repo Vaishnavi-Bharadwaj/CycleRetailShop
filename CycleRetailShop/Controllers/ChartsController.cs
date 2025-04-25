@@ -80,10 +80,9 @@ namespace CycleRetailShop.API.Controllers
         public IActionResult GetYearlyRevenue()
         {
             var yearlyData = _context.Orders
-                .Where(o => o.Status == "Completed")
+                .Where(o => o.Status == "Approved" || o.Status == "Shipped" || o.Status == "Delivered")  
                 .Include(o => o.Cycle)
-                .AsEnumerable()
-                .GroupBy(o => o.OrderDate.Year)
+                .GroupBy(o => o.OrderDate.Year)  
                 .Select(g => new
                 {
                     Year = g.Key,
@@ -94,5 +93,6 @@ namespace CycleRetailShop.API.Controllers
 
             return Ok(yearlyData);
         }
+
     }
 }

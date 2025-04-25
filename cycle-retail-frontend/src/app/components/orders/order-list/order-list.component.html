@@ -43,7 +43,7 @@
             <button class="button1" (click)="updateStatus(order.id)">Update</button>
             <button class="button2" (click)="deleteOrder(order.id, order.cycleId, order.quantity)">Delete</button>
           </div>
-          <button class="add_to_cart" (click)="addToCart(order)">Add To Cart</button>
+          <button class="add_to_cart" (click)="addToCart(order)" [disabled]="order.status.trim() === 'Delivered'">Add To Cart</button>
         </div>
       </div>
     </div>
