@@ -12,15 +12,17 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #e3e1e4; 
   min-height: 100vh;
-  background: linear-gradient(135deg, #f0e6f6, #dceff2, #f8ecec);
+  //background: linear-gradient(135deg, #f0e6f6, #dceff2, #f8ecec);
+  background: linear-gradient(135deg, #baabc2, #afa1a1, #ac9898);
+
   background-size: 200% 200%;
-  animation: gradientShift 10s ease infinite;
+  //animation: gradientShift 10s ease infinite;
 }
 
 h1 {
-  color: #6c6a6d; 
+  color: #4e4c4e; 
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #bdb6c5;
+  border-bottom: 2px solid #949396;
   padding-bottom: 0.5rem;
   text-align: center;
   font-size: 2rem;
@@ -33,9 +35,11 @@ ul {
 }
 
 li {
-  background-color: #f0f0f5; 
-  border: 1px solid #dcdde1; 
-  border-left: 6px solid #c8c6d7; 
+  //background-color: #f0f0f5; 
+  background-color: #cbc0c0; 
+  border: 1px solid #bcbec6; 
+  //border-left: 6px solid #c8c6d7; 
+  border-left: 6px solid #75757b; 
   padding: 1rem;
   margin-bottom: 1rem;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
@@ -49,7 +53,7 @@ li {
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-    background-color: #ffffff;
+    background-color: #c4baba;
   }
 }
 
@@ -62,7 +66,7 @@ li {
 }
 
 button.delete {
-  background-color: #b8b5b9; 
+  background-color: #8b878d; 
   color: white;
   border: none;
   padding: 8px 14px;
@@ -83,3 +87,4 @@ button.delete {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
