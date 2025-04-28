@@ -9,8 +9,12 @@ using System.Text.Json.Serialization;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.IdentityModel.Tokens.Jwt;
 
+
+
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Enable CORS (Allow frontend apps to call APIs)
 builder.Services.AddCors(options =>
@@ -70,6 +74,7 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddEndpointsApiExplorer();
+
 
 // Configure Swagger (Enable API documentation & Add JWT Authentication)
 builder.Services.AddSwaggerGen(c =>

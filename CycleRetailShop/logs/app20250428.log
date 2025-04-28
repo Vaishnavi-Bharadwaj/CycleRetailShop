@@ -1,0 +1,159 @@
+2025-04-28 12:19:05.681 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:19:05.875 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-04-28 12:19:05.880 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-04-28 12:19:05.882 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-04-28 12:19:05.883 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:19:05.885 +05:30 [INF] No migrations were applied. The database is already up to date.
+2025-04-28 12:19:05.948 +05:30 [INF] User profile is available. Using 'C:\Users\vabbx\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-28 12:19:06.004 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2025-04-28 12:19:06.030 +05:30 [INF] Now listening on: https://localhost:5001
+2025-04-28 12:19:06.030 +05:30 [INF] Now listening on: http://localhost:5000
+2025-04-28 12:19:06.032 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-28 12:19:06.032 +05:30 [INF] Hosting environment: Development
+2025-04-28 12:19:06.032 +05:30 [INF] Content root path: C:\Users\vabbx\Desktop\CsharpProjects\CycleRetailShop\CycleRetailShop
+2025-04-28 12:19:22.249 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/index.html - null null
+2025-04-28 12:19:22.328 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/index.html - 200 null text/html;charset=utf-8 79.3504ms
+2025-04-28 12:19:22.347 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger-ui.css - null null
+2025-04-28 12:19:22.348 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger-ui-bundle.js - null null
+2025-04-28 12:19:22.349 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger-ui-standalone-preset.js - null null
+2025-04-28 12:19:22.350 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/index.js - null null
+2025-04-28 12:19:22.350 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/index.css - null null
+2025-04-28 12:19:22.351 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/index.js - 200 null application/javascript;charset=utf-8 1.4073ms
+2025-04-28 12:19:22.355 +05:30 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-04-28 12:19:22.355 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/index.css - 200 202 text/css 4.4878ms
+2025-04-28 12:19:22.361 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-04-28 12:19:22.362 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-04-28 12:19:22.363 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger-ui-standalone-preset.js - 200 230007 text/javascript 14.1961ms
+2025-04-28 12:19:22.363 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger-ui.css - 200 152035 text/css 16.0699ms
+2025-04-28 12:19:22.368 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-04-28 12:19:22.368 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger-ui-bundle.js - 200 1426050 text/javascript 19.9103ms
+2025-04-28 12:19:22.464 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-04-28 12:19:22.464 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon-32x32.png - null null
+2025-04-28 12:19:22.465 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-04-28 12:19:22.465 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon-32x32.png - 200 628 image/png 0.9615ms
+2025-04-28 12:19:22.516 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 51.9347ms
+2025-04-28 12:19:25.646 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/index.html - null null
+2025-04-28 12:19:25.647 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/index.html - 200 null text/html;charset=utf-8 0.6504ms
+2025-04-28 12:19:25.657 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/index.js - null null
+2025-04-28 12:19:25.658 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/index.js - 200 null application/javascript;charset=utf-8 0.655ms
+2025-04-28 12:19:25.707 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-04-28 12:19:25.708 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon-32x32.png - null null
+2025-04-28 12:19:25.708 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-04-28 12:19:25.708 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon-32x32.png - 200 628 image/png 0.715ms
+2025-04-28 12:19:25.712 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 4.3783ms
+2025-04-28 12:19:43.031 +05:30 [INF] Application is shutting down...
+2025-04-28 12:19:46.916 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:19:47.117 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-04-28 12:19:47.122 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-04-28 12:19:47.123 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-04-28 12:19:47.123 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:19:47.125 +05:30 [INF] No migrations were applied. The database is already up to date.
+2025-04-28 12:19:47.191 +05:30 [INF] User profile is available. Using 'C:\Users\vabbx\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-28 12:19:47.247 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2025-04-28 12:19:47.273 +05:30 [INF] Now listening on: https://localhost:5001
+2025-04-28 12:19:47.273 +05:30 [INF] Now listening on: http://localhost:5000
+2025-04-28 12:19:47.274 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-28 12:19:47.274 +05:30 [INF] Hosting environment: Development
+2025-04-28 12:19:47.274 +05:30 [INF] Content root path: C:\Users\vabbx\Desktop\CsharpProjects\CycleRetailShop\CycleRetailShop
+2025-04-28 12:20:03.529 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/auth/login/vaishnavi/vaishnavI@123/Admin - null null
+2025-04-28 12:20:03.539 +05:30 [INF] CORS policy execution successful.
+2025-04-28 12:20:03.540 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/auth/login/vaishnavi/vaishnavI@123/Admin - 204 null null 11.9852ms
+2025-04-28 12:20:03.546 +05:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/auth/login/vaishnavi/vaishnavI@123/Admin - application/json 2
+2025-04-28 12:20:03.548 +05:30 [INF] CORS policy execution successful.
+2025-04-28 12:20:03.567 +05:30 [INF] Executing endpoint 'CycleRetailShop.API.Controllers.AuthController.Login (CycleRetailShop)'
+2025-04-28 12:20:03.575 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String, System.String) on controller CycleRetailShop.API.Controllers.AuthController (CycleRetailShop).
+2025-04-28 12:20:03.732 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__username_0='?', @__role_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."PasswordHash", u."Phone", u."Role", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__username_0 AND u."Role" = @__role_1
+LIMIT 1
+2025-04-28 12:20:03.944 +05:30 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-04-28 12:20:03.975 +05:30 [INF] Executed action CycleRetailShop.API.Controllers.AuthController.Login (CycleRetailShop) in 397.8474ms
+2025-04-28 12:20:03.975 +05:30 [INF] Executed endpoint 'CycleRetailShop.API.Controllers.AuthController.Login (CycleRetailShop)'
+2025-04-28 12:20:03.977 +05:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/auth/login/vaishnavi/vaishnavI@123/Admin - 401 null application/json; charset=utf-8 430.8537ms
+2025-04-28 12:20:11.832 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/index.html - null null
+2025-04-28 12:20:11.867 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/index.html - 200 null text/html;charset=utf-8 35.2223ms
+2025-04-28 12:20:11.878 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/index.js - null null
+2025-04-28 12:20:11.882 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/index.js - 200 null application/javascript;charset=utf-8 3.4876ms
+2025-04-28 12:20:11.916 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-04-28 12:20:11.916 +05:30 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon-32x32.png - null null
+2025-04-28 12:20:11.919 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-04-28 12:20:11.919 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon-32x32.png - 200 628 image/png 3.7247ms
+2025-04-28 12:20:11.966 +05:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 50.7684ms
+2025-04-28 12:20:26.142 +05:30 [INF] Application is shutting down...
+2025-04-28 12:20:39.784 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:20:39.969 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-04-28 12:20:39.974 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-04-28 12:20:39.975 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-04-28 12:20:39.976 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:20:39.978 +05:30 [INF] No migrations were applied. The database is already up to date.
+2025-04-28 12:20:40.045 +05:30 [INF] User profile is available. Using 'C:\Users\vabbx\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-28 12:20:40.107 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2025-04-28 12:20:40.133 +05:30 [INF] Now listening on: https://localhost:5001
+2025-04-28 12:20:40.133 +05:30 [INF] Now listening on: http://localhost:5000
+2025-04-28 12:20:40.135 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-28 12:20:40.135 +05:30 [INF] Hosting environment: Development
+2025-04-28 12:20:40.135 +05:30 [INF] Content root path: C:\Users\vabbx\Desktop\CsharpProjects\CycleRetailShop\CycleRetailShop
+2025-04-28 12:21:11.407 +05:30 [INF] Application is shutting down...
+2025-04-28 12:21:19.395 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:21:19.572 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-04-28 12:21:19.576 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-04-28 12:21:19.578 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-04-28 12:21:19.579 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-28 12:21:19.581 +05:30 [INF] No migrations were applied. The database is already up to date.
+2025-04-28 12:21:19.646 +05:30 [INF] User profile is available. Using 'C:\Users\vabbx\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-28 12:21:19.704 +05:30 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2025-04-28 12:21:19.726 +05:30 [INF] Now listening on: https://localhost:5001
+2025-04-28 12:21:19.727 +05:30 [INF] Now listening on: http://localhost:5000
+2025-04-28 12:21:19.729 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-28 12:21:19.729 +05:30 [INF] Hosting environment: Development
+2025-04-28 12:21:19.729 +05:30 [INF] Content root path: C:\Users\vabbx\Desktop\CsharpProjects\CycleRetailShop\CycleRetailShop
+2025-04-28 12:22:27.706 +05:30 [INF] Application is shutting down...
