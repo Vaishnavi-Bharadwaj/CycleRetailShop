@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class AuthService {
-  //private apiUrl = 'http://localhost:5001/api/auth'; 
   private apiUrl = 'https://localhost:5001/api/charts'; 
   private cart: any[] = [];
 
@@ -58,11 +57,6 @@ export class AuthService {
   // Get Monthly Sales Data
   getMonthlySales(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/admin-dashboard/monthly-sales`);
-  }
-
-  // Get Orders by Status Data
-  getOrdersByStatus(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/admin-dashboard/orders-by-status`);
   }
 
   // Get Top Selling Cycles Data
