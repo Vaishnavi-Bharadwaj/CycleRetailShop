@@ -2,6 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Toast, ToastrService } from 'ngx-toastr';
+
+interface Customer {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+}
+
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
@@ -14,7 +22,7 @@ export class CustomersComponent implements OnInit{
   customerEmail!: string;
   customerPhone!: string;
   role: string = '';
-
+  editCustomer: any=null;
   constructor(private http: HttpClient, private authService: AuthService, private toast: ToastrService) {}
 
   ngOnInit(): void {
@@ -45,9 +53,9 @@ export class CustomersComponent implements OnInit{
     });
   }
 
-  updateDetails() {
+  updateDetails(cusomter: Customer) {
     const headers = this.getHeaders();
-    const url =  `https://localhost:5001/api/customers/update/${this.customerId}/${this.customerName}/${this.customerEmail}/${this.customerPhone}`
+    const url =  `https://localhost:5001/api/customers/update/${cusomter.id}/${cusomter.name}/${cusomter.email}/${cusomter.phone}`
     this.http.put(url, null, { headers }).subscribe({
       next: (response) => {
         this.toast.success('Customer details updated successfully!', 'Success');
@@ -57,6 +65,20 @@ export class CustomersComponent implements OnInit{
         this.toast.error('Failed to update customer details!', 'Error');
       }
     }) 
+  }
+
+  editingCustomer(customer: any) {
+    // Create a copy so cancel won't affect original
+    this.editCustomer = { ...customer };
+  }
+
+  saveCustomer() {
+    this.updateDetails(this.editCustomer); 
+    this.editCustomer = null;
+  }
+
+  cancelCustomer() {
+    this.editCustomer = null;
   }
 
 }

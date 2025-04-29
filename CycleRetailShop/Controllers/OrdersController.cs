@@ -147,7 +147,7 @@ namespace CycleRetailShop.API.Controllers
             if (order == null)
                 return NotFound(new{ message= "Order not found."});
 
-            if (order.Status == "Approved")
+            if (order.Status == "Approved" || order.Status == "Shipped" || order.Status == "Delivered")
                 return BadRequest(new{ message= "This order has already been paid."});
 
             Cycle? cycle = null;

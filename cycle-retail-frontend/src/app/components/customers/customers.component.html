@@ -3,12 +3,11 @@
       <h2><img src="assets/users.png" class="cycle"> Customer Management</h2>
   
       <div class="form-inline">
-        <input [(ngModel)]="customerId" type="number" placeholder="ID (for update)">
+        <!-- <input [(ngModel)]="customerId" type="number" placeholder="ID (for update)"> -->
         <input [(ngModel)]="customerName" type="text" placeholder="Name">
         <input [(ngModel)]="customerEmail" type="email" placeholder="Email">
         <input [(ngModel)]="customerPhone" type="tel" placeholder="Phone">
-        <button (click)="addCustomers()">Add</button>
-        <button (click)="updateDetails()">Update</button>
+        <button class="add" (click)="addCustomers()">➕ Add Customer</button>
       </div>
     </div>
   
@@ -21,6 +20,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -29,9 +29,42 @@
             <td>{{ customer.name }}</td>
             <td>{{ customer.email }}</td>
             <td>{{ customer.phone }}</td>
+
+            <td class="card-actions">
+              <button class="update-btn" (click)="editingCustomer(customer)">Update</button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   
+  <div class="modal-overlay" *ngIf="editCustomer">
+    <div class="modal-content">
+      <h3>Update Customer</h3>
+  
+      <div class="modal-grid">
+        <div class="field">
+          <label>Customer ID</label>
+          <input [(ngModel)]="editCustomer.id" />
+        </div>
+        <div class="field">
+          <label>Name</label>
+          <input [(ngModel)]="editCustomer.name" />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input [(ngModel)]="editCustomer.email" />
+        </div>
+        <div class="field">
+          <label>Phone</label>
+          <input type="number" [(ngModel)]="editCustomer.phone" />
+        </div>
+      </div>
+  
+      <div class="modal-buttons">
+        <button class="save-btn" (click)="saveCustomer()">Save</button>
+        <button class="cancel-btn" (click)="cancelCustomer()">Cancel</button>
+      </div>
+    </div>
+  </div>
