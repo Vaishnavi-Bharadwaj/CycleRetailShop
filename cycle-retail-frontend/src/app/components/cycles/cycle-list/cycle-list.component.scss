@@ -1,28 +1,245 @@
 
+// .background-wrapper {
+//   background-image: url('cool-bicycle-studio (7).jpg');
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-attachment: fixed; 
+//   min-height: 100vh;
+//   padding: 20px;
+// }
+
+// .cycle-container {
+//   background: rgba(255, 255, 255, 0.85);
+//   padding: 30px;
+//   margin: 40px auto;
+//   max-width: 1100px;
+//   border-radius: 15px;
+//   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+//   color: #2c3e50;
+// }
+
+// h2 {
+//   text-align: center;
+//   margin-bottom: 20px;
+//   color: #2c3e50;
+// }
+
+// .form-container {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 10px;
+//   margin-bottom: 25px;
+// }
+
+// .form-container input {
+//   flex: 1 1 150px;
+//   padding: 10px;
+//   border: 1px solid #ddd;
+//   border-radius: 8px;
+// }
+
+// .form-container button {
+//   padding: 10px 20px;
+//   background: #3498db;
+//   color: white;
+//   border: none;
+//   border-radius: 8px;
+//   cursor: pointer;
+//   transition: background 0.3s ease;
+// }
+
+// .form-container button:hover {
+//   background: #2980b9;
+// }
+
+// /* Grid for Cards */
+// .cycle-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+//   gap: 20px;
+//   margin-top: 20px;
+//   align-items: stretch;
+// }
+
+// /* Card Style */
+// .cycle-card {
+//   background: rgb(242, 241, 237);
+//   border-radius: 10px;
+//   padding: 10px;
+//   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+//   transition: transform 0.2s ease;
+//   border: 1px solid #d1e2f2;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   height: 100%;
+// }
+
+// .cycle-card:hover {
+//   transform: translateY(-5px);
+// }
+
+// .cycle-card h3 {
+//   margin-top: 0;
+//   color: #2c3e50;
+// }
+
+// .cycle-card p {
+//   margin: 6px 0;
+//   color: #333;
+// }
+
+// .card-actions {
+//   margin-top: 10px;
+//   display: flex;
+//   gap: 10px;
+//   justify-content: flex-end;
+// }
+
+// /* Button Styles */
+// button.update {
+//   background-color: #eaf2f8;
+//   border-color: #8aa5bb;
+//   border-radius: 5px;
+//   padding: 5px 10px;
+//   cursor: pointer;
+// }
+
+// button.update:hover {
+//   background-color: #85a3b8;
+// }
+
+// button.delete {
+//   background-color: #e9b3ba;
+//   border-color: #9b6a6a;
+//   border-radius: 5px;
+//   padding: 5px 10px;
+//   cursor: pointer;
+// }
+
+// button.delete:hover {
+//   background-color: #be7b7b;
+// }
+
+// /* Modal Styles */
+// .modal-overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: rgba(0, 0, 0, 0.4);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 1000;
+// }
+
+// .modal-content {
+//   background: #eaf2f8;
+//   padding: 20px 25px;
+//   border-radius: 12px;
+//   width: 500px;
+//   max-width: 90%;
+//   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+//   text-align: center;
+// }
+
+// .modal-grid {
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   gap: 12px;
+//   margin: 20px 0;
+// }
+
+// .modal-grid .field:nth-child(4),
+// .modal-grid .field:nth-child(5) {
+//   grid-column: span 1;
+// }
+
+// .field {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+// }
+
+// .field label {
+//   font-size: 13px;
+//   margin-bottom: 4px;
+//   font-weight: bold;
+//   color: #444;
+// }
+
+// .field input {
+//   width: 100%;
+//   padding: 6px 10px;
+//   border-radius: 6px;
+//   border: 1px solid #ccc;
+//   font-size: 14px;
+// }
+
+// .modal-buttons {
+//   display: flex;
+//   justify-content: center;
+//   gap: 12px;
+// }
+
+// .save-btn,
+// .cancel-btn {
+//   padding: 8px 16px;
+//   border-radius: 6px;
+//   font-weight: bold;
+//   cursor: pointer;
+//   font-size: 14px;
+// }
+
+// .save-btn {
+//   background-color: #afcfe5;
+//   border-color: #8aa5bb;
+//   color: black;
+// }
+
+// .cancel-btn {
+//   background-color: #e9b3ba;
+//   border-color: #9b6a6a;
+//   color: black;
+// }
+
+// .cycle-image {
+//   width: 100%;
+//   height: 210px;
+//   object-fit: cover;
+//   border-radius: 8px;
+//   margin-bottom: 20px;
+// }
+
+
 .background-wrapper {
-  background-image: url('antonio-vivace-Ngrs1thQDSg-unsplash(1).jpg');
+  background-image: url('cool-bicycle-studio (7).jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   min-height: 100vh;
   padding: 20px;
+  color: #e0e0e0;
 }
 
 .cycle-container {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(34, 34, 34, 0.85);
   padding: 30px;
   margin: 40px auto;
   max-width: 1100px;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  color: #2c3e50;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  color: #e0e0e0;
 }
 
 h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #2c3e50;
+  color: #e0e0e0;
 }
 
 .form-container {
@@ -35,13 +252,15 @@ h2 {
 .form-container input {
   flex: 1 1 150px;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #555;
   border-radius: 8px;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
 }
 
 .form-container button {
   padding: 10px 20px;
-  background: #3498db;
+  background: #6185ae;
   color: white;
   border: none;
   border-radius: 8px;
@@ -62,18 +281,24 @@ h2 {
   align-items: stretch;
 }
 
-/* Card Style */
 .cycle-card {
-  background: rgb(242, 241, 237);
+  background: rgba(40, 40, 40, 0.75);  /* Transparent dark background */
+  backdrop-filter: blur(4px);         
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
-  border: 1px solid #d1e2f2;
+  border: 1px solid #666;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+
+input::placeholder {
+  color: #ffffff;
+  opacity: 0.7; /* optional: makes the placeholder slightly translucent */
 }
 
 .cycle-card:hover {
@@ -82,12 +307,12 @@ h2 {
 
 .cycle-card h3 {
   margin-top: 0;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 .cycle-card p {
   margin: 6px 0;
-  color: #333;
+  color: #cfcfcf;
 }
 
 .card-actions {
@@ -99,27 +324,29 @@ h2 {
 
 /* Button Styles */
 button.update {
-  background-color: #eaf2f8;
-  border-color: #8aa5bb;
+  background-color: #3c4f64;
+  border-color: #6b8ba4;
+  color: #ffffff;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
 }
 
 button.update:hover {
-  background-color: #85a3b8;
+  background-color: #57748f;
 }
 
 button.delete {
-  background-color: #e9b3ba;
-  border-color: #9b6a6a;
+  background-color: #744444;
+  border-color: #b87a7a;
+  color: #ffffff;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
 }
 
 button.delete:hover {
-  background-color: #be7b7b;
+  background-color: #9e4c4c;
 }
 
 /* Modal Styles */
@@ -129,7 +356,7 @@ button.delete:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,13 +364,14 @@ button.delete:hover {
 }
 
 .modal-content {
-  background: #eaf2f8;
+  background: #2d2d2d;
   padding: 20px 25px;
   border-radius: 12px;
   width: 500px;
   max-width: 90%;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
   text-align: center;
+  color: #e0e0e0;
 }
 
 .modal-grid {
@@ -168,15 +396,17 @@ button.delete:hover {
   font-size: 13px;
   margin-bottom: 4px;
   font-weight: bold;
-  color: #444;
+  color: #ccc;
 }
 
 .field input {
   width: 100%;
   padding: 6px 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #666;
   font-size: 14px;
+  background-color: #3a3a3a;
+  color: #f0f0f0;
 }
 
 .modal-buttons {
@@ -192,18 +422,17 @@ button.delete:hover {
   font-weight: bold;
   cursor: pointer;
   font-size: 14px;
+  color: white;
 }
 
 .save-btn {
-  background-color: #afcfe5;
+  background-color: #5c7a99;
   border-color: #8aa5bb;
-  color: black;
 }
 
 .cancel-btn {
-  background-color: #e9b3ba;
-  border-color: #9b6a6a;
-  color: black;
+  background-color: #9e4c4c;
+  border-color: #b87a7a;
 }
 
 .cycle-image {

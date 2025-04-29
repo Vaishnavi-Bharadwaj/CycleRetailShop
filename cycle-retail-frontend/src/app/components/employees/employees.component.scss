@@ -2,31 +2,106 @@
 //   display: block;
 //   padding: 2rem;
 //   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-//   background-color: #e3e1e4; // Misty Lavender
+//   background-color: #e3e1e4; 
 //   min-height: 100vh;
+//   background: linear-gradient(135deg, #baabc2, #afa1a1, #ac9898);
+
+//   background-size: 200% 200%;
+  
 // }
+
+// h1 {
+//   color: #4e4c4e; 
+//   margin-bottom: 1.5rem;
+//   border-bottom: 2px solid #949396;
+//   padding-bottom: 0.5rem;
+//   text-align: center;
+//   font-size: 2rem;
+//   letter-spacing: 0.5px;
+// }
+
+// ul {
+//   list-style: none;
+//   padding: 0;
+// }
+
+// li {
+  
+//   background-color: #cbc0c0; 
+//   border: 1px solid #bcbec6; 
+  
+//   border-left: 6px solid #75757b; 
+//   padding: 1rem;
+//   margin-bottom: 1rem;
+//   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+//   transition: all 0.3s ease;
+//   border-radius: 12px;
+
+//   display: flex;
+//   align-items: center;
+//   gap: 16px;
+
+//   &:hover {
+//     transform: translateY(-3px);
+//     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+//     background-color: #c4baba;
+//   }
+// }
+
+// .cycle {
+//   width: 50px;
+//   height: 50px;
+//   object-fit: cover;
+//   border-radius: 8px;
+//   margin-right: 10px;
+// }
+
+// button.delete {
+//   background-color: #8b878d; 
+//   color: white;
+//   border: none;
+//   padding: 8px 14px;
+//   border-radius: 8px;
+//   cursor: pointer;
+//   margin-left: auto;
+//   font-weight: 500;
+//   transition: background-color 0.2s ease;
+//   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+//   &:hover {
+//     background-color: #a19ba6;
+//   }
+// }
+
+// @keyframes gradientShift {
+//   0% { background-position: 0% 50%; }
+//   50% { background-position: 100% 50%; }
+//   100% { background-position: 0% 50%; }
+// }
+
 
 :host {
   display: block;
   padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #e3e1e4; 
   min-height: 100vh;
-  //background: linear-gradient(135deg, #f0e6f6, #dceff2, #f8ecec);
-  background: linear-gradient(135deg, #baabc2, #afa1a1, #ac9898);
-
+  background: linear-gradient(135deg, #1c1f2b, #2b2f3c, #1e1e29);
   background-size: 200% 200%;
-  //animation: gradientShift 10s ease infinite;
+  animation: gradientShift 10s ease infinite;
+  color: #f1f1f1;
 }
 
 h1 {
-  color: #4e4c4e; 
+  color: #e6e6fa;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #949396;
+  border-bottom: 2px solid #4c4f6b;
   padding-bottom: 0.5rem;
   text-align: center;
   font-size: 2rem;
   letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #a28dd0, #78b1d3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 ul {
@@ -35,26 +110,24 @@ ul {
 }
 
 li {
-  //background-color: #f0f0f5; 
-  background-color: #cbc0c0; 
-  border: 1px solid #bcbec6; 
-  //border-left: 6px solid #c8c6d7; 
-  border-left: 6px solid #75757b; 
+  background-color: #2f3240;
+  border: 1px solid #3f4458;
+  border-left: 6px solid #7bc2f3;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   border-radius: 12px;
-
   display: flex;
   align-items: center;
   gap: 16px;
+}
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-    background-color: #c4baba;
-  }
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  background-color: #3b3f51;
+  border-left-color: #f2b5d4;
 }
 
 .cycle {
@@ -63,10 +136,11 @@ li {
   object-fit: cover;
   border-radius: 8px;
   margin-right: 10px;
+
 }
 
 button.delete {
-  background-color: #8b878d; 
+  background-color: #f76c6c;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -74,12 +148,13 @@ button.delete {
   cursor: pointer;
   margin-left: auto;
   font-weight: 500;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
 
-  &:hover {
-    background-color: #a19ba6;
-  }
+button.delete:hover {
+  background-color: #ff8787;
+  transform: scale(1.05);
 }
 
 @keyframes gradientShift {
@@ -88,3 +163,8 @@ button.delete {
   100% { background-position: 0% 50%; }
 }
 
+
+.employee {
+  width: 25px;
+  height: 25px;
+}

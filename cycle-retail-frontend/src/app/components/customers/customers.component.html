@@ -10,7 +10,7 @@
         <button class="add" (click)="addCustomers()">➕ Add Customer</button>
       </div>
     </div>
-  
+    <h2  *ngIf="role!=='Admin'"><img src="assets/users.png" class="cycle"> Customer Management</h2>
     <div class="table-container">
       <h3>Customer List</h3>
       <table>
