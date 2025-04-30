@@ -73,9 +73,11 @@ export class PaymentComponent {
           this.toast.success(this.successMessage, 'Success');
           this.isLoading = false; // Stop loader
 
-          this.router.navigate(['/payment-details'], {
-            state: { receiptData: res }
-          });
+          setTimeout(() => {
+            this.router.navigate(['/payment-details'], {
+              state: { receiptData: res }
+            });
+          }, 2000);
         },
         error: (err) => {
           this.errorMessage = err?.error?.message || 'Something went wrong';

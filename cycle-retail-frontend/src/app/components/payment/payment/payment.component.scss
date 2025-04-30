@@ -150,8 +150,161 @@
 //   }
   
 
+// .payment-page-wrapper {
+//   background: linear-gradient(to bottom right, #1f1f1f, #2c2c2c);
+//   min-height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 40px;
+// }
+
+// .dummy-payment-container {
+//   max-width: 600px;
+//   margin: 3rem auto;
+//   padding: 2.5rem;
+//   border-radius: 20px;
+//   background: linear-gradient(135deg, #2a2a2a, #3b3b3b);
+//   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+//   font-family: 'Poppins', sans-serif;
+//   text-align: center;
+//   transition: all 0.3s ease;
+//   color: #f1f1f1;
+// }
+
+// h2 {
+//   color: #f1f1f1;
+//   font-size: 2rem;
+//   margin-bottom: 1.5rem;
+// }
+
+// label {
+//   font-weight: 600;
+//   display: block;
+//   margin-bottom: 0.5rem;
+//   color: #ccc;
+//   text-align: left;
+// }
+
+// select {
+//   width: 100%;
+//   padding: 0.75rem;
+//   font-size: 1rem;
+//   border: 2px solid #b55252;
+//   border-radius: 10px;
+//   margin-bottom: 2rem;
+//   background-color: #2f2f2f;
+//   color: #fff;
+//   transition: border-color 0.3s ease;
+// }
+
+// select:focus {
+//   border-color: #ac5656;
+//   outline: none;
+// }
+
+// .card-form,
+// .qr-image,
+// input,
+// p {
+//   text-align: left;
+// }
+
+// .card-form,
+// .qr-image,
+// input {
+//   margin-bottom: 1rem;
+// }
+
+// input {
+//   width: 100%;
+//   padding: 0.7rem;
+//   font-size: 1rem;
+//   border: 2px solid #b6564d;
+//   background-color: #2f2f2f;
+//   color: #fff;
+//   border-radius: 10px;
+//   transition: border-color 0.3s ease;
+// }
+
+// input:focus {
+//   border-color: #c34e4e;
+//   outline: none;
+// }
+
+// .qr-image {
+//   display: block;
+//   margin: 1rem auto;
+//   width: 200px;
+//   height: 200px;
+//   border-radius: 10px;
+//   border: 2px dashed #b46767;
+//   background: #1e1e1e;
+//   padding: 0.5rem;
+//   object-fit: contain;
+// }
+
+// button {
+//   background: linear-gradient(to right, #b55858, #ad4848);
+//   color: white;
+//   border: none;
+//   padding: 12px 30px;
+//   border-radius: 5px;
+//   font-size: 1rem;
+//   font-weight: bold;
+//   margin-top: 1.5rem;
+//   cursor: pointer;
+//   transition: background 0.3s ease, transform 0.2s ease;
+// }
+
+// button:hover {
+//   background: linear-gradient(to right, #a62626, #a62e2e);
+//   transform: translateY(-2px);
+// }
+
+// .success {
+//   background: #2e7d32;
+//   color: #d0f0c0;
+//   border-left: 6px solid #66bb6a;
+//   padding: 1rem;
+//   margin-top: 2rem;
+//   border-radius: 10px;
+//   font-weight: 600;
+// }
+
+// .loader-overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: rgba(20, 20, 20, 0.7);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   z-index: 999;
+// }
+
+// .spinner {
+//   border: 6px solid #444;
+//   border-top: 6px solid #b64d4d;
+//   border-radius: 50%;
+//   width: 50px;
+//   height: 50px;
+//   animation: spin 1s linear infinite;
+// }
+
+// @keyframes spin {
+//   0% { transform: rotate(0deg); }
+//   100% { transform: rotate(360deg); }
+// }
+
+// input.ng-invalid.ng-touched {
+//   border: 1px solid red;
+// }
+
 .payment-page-wrapper {
-  background: linear-gradient(to bottom right, #1f1f1f, #2c2c2c);
+  background: linear-gradient(to bottom right, #031927, #1c3a52);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -164,17 +317,16 @@
   margin: 3rem auto;
   padding: 2.5rem;
   border-radius: 20px;
-  background: linear-gradient(135deg, #2a2a2a, #3b3b3b);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: rgba(12, 21, 34, 0.8);
+  box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3);
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  transition: all 0.3s ease;
-  color: #f1f1f1;
+  color: #ffffff;
 }
 
 h2 {
-  color: #f1f1f1;
-  font-size: 2rem;
+  color: #6600d4;
+  font-size: 2.2rem;
   margin-bottom: 1.5rem;
 }
 
@@ -190,16 +342,16 @@ select {
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
-  border: 2px solid #b55252;
+  border: 2px solid #5500d4;
   border-radius: 10px;
   margin-bottom: 2rem;
-  background-color: #2f2f2f;
+  background-color: #263238;
   color: #fff;
   transition: border-color 0.3s ease;
 }
 
 select:focus {
-  border-color: #ac5656;
+  border-color: #7002d1;
   outline: none;
 }
 
@@ -220,15 +372,15 @@ input {
   width: 100%;
   padding: 0.7rem;
   font-size: 1rem;
-  border: 2px solid #b6564d;
-  background-color: #2f2f2f;
+  border: 2px solid #6600d4;
+  background-color: #263238;
   color: #fff;
   border-radius: 10px;
   transition: border-color 0.3s ease;
 }
 
 input:focus {
-  border-color: #c34e4e;
+  border-color: #7b02d1;
   outline: none;
 }
 
@@ -238,18 +390,18 @@ input:focus {
   width: 200px;
   height: 200px;
   border-radius: 10px;
-  border: 2px dashed #b46767;
+  border: 2px dashed #5100d4;
   background: #1e1e1e;
   padding: 0.5rem;
   object-fit: contain;
 }
 
 button {
-  background: linear-gradient(to right, #b55858, #ad4848);
+  background: linear-gradient(to right, #7f00d4, #4e02d1);
   color: white;
   border: none;
   padding: 12px 30px;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: bold;
   margin-top: 1.5rem;
@@ -258,7 +410,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(to right, #a62626, #a62e2e);
+  background: linear-gradient(to right, #4402d1, #4a00d4);
   transform: translateY(-2px);
 }
 
@@ -287,7 +439,7 @@ button:hover {
 
 .spinner {
   border: 6px solid #444;
-  border-top: 6px solid #b64d4d;
+  border-top: 6px solid #7100d4;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -302,3 +454,5 @@ button:hover {
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+

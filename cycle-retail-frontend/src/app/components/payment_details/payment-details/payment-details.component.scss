@@ -1,59 +1,59 @@
-.receipt-preview-wrapper {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    text-align: left;
-  }
+// .receipt-preview-wrapper {
+//     max-width: 600px;
+//     margin: 40px auto;
+//     padding: 20px;
+//     background: #ffffff;
+//     border-radius: 12px;
+//     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+//     text-align: left;
+//   }
   
-  .title {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
+//   .title {
+//     font-size: 24px;
+//     text-align: center;
+//     margin-bottom: 20px;
+//     color: #333;
+//   }
   
-  .receipt-box {
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    color: #444;
+//   .receipt-box {
+//     background-color: #f9f9f9;
+//     border: 1px solid #e0e0e0;
+//     padding: 20px;
+//     border-radius: 8px;
+//     font-size: 16px;
+//     color: #444;
   
-    p {
-      margin: 10px 0;
-      line-height: 1.5;
-    }
-  }
+//     p {
+//       margin: 10px 0;
+//       line-height: 1.5;
+//     }
+//   }
   
-  .actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+//   .actions {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-top: 20px;
   
-    button {
-      padding: 10px 20px;
-      font-size: 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+//     button {
+//       padding: 10px 20px;
+//       font-size: 15px;
+//       border: none;
+//       border-radius: 5px;
+//       cursor: pointer;
   
-      &:first-child {
-        background-color: #007bff;
-        color: white;
-      }
+//       &:first-child {
+//         background-color: #007bff;
+//         color: white;
+//       }
   
-      &.back-button {
-        background-color: #6c757d;
-        color: white;
-      }
+//       &.back-button {
+//         background-color: #6c757d;
+//         color: white;
+//       }
   
-      &:hover {
-        opacity: 0.9;
-      }
-    }
-  }
+//       &:hover {
+//         opacity: 0.9;
+//       }
+//     }
+//   }
   
