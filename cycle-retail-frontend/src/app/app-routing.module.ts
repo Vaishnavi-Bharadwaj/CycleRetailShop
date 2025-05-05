@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard]},
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
   { path: 'payment/:id', component: PaymentComponent, canActivate: [AuthGuard]},
-  { path: 'payment-details', component: PaymentDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'payment-details/:id', component: PaymentDetailsComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 
 ];

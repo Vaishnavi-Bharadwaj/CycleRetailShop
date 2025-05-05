@@ -19,6 +19,7 @@ export class OrderListComponent implements OnInit {
   role: string = '';
   successMessage: string = '';
   errorMessage: string = '';
+  receipts: any[] = [];
 
   statusPriority: { [key: string]: number } = {
     'Pending': 1,
@@ -118,5 +119,6 @@ export class OrderListComponent implements OnInit {
     this.router.navigate(['/payment', order.id]);
 
   }
+  
   
 }

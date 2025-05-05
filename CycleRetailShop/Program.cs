@@ -129,6 +129,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Use HTTPS redirection for security
+
 app.UseHttpsRedirection();
 
 // Enable CORS

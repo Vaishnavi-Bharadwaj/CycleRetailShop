@@ -74,7 +74,7 @@ export class PaymentComponent {
           this.isLoading = false; // Stop loader
 
           setTimeout(() => {
-            this.router.navigate(['/payment-details'], {
+            this.router.navigate(['/payment-details', this.orderId], {
               state: { receiptData: res }
             });
           }, 2000);

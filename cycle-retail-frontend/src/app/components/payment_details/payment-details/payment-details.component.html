@@ -1,3 +1,4 @@
+<div class="background-wrapper">
 <div class="receipt-preview-wrapper" *ngIf="receiptData">
     <h2 class="title">Payment Receipt Preview</h2>
   
@@ -13,5 +14,9 @@
       <button (click)="generateReceipt(receiptData)">Download PDF</button>
       <button routerLink="/orders" class="back-button">Back to Orders</button>
     </div>
+
+    <div *ngIf="!receiptData">
+      <p>Loading receipt...</p>
+    </div>
   </div>
-  
+</div>
